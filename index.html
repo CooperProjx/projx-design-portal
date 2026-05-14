@@ -457,43 +457,43 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 
 /* ── Design Grid ── */
 .design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.design-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:2px solid transparent;transition:all 0.2s ease;cursor:pointer}
-.design-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
-.design-card.selected{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-glow),var(--shadow-md)}
+.design-card{background:var(--navy-mid);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);transition:all 0.2s ease;cursor:pointer}
+.design-card:hover{box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 12px 30px rgba(0,0,0,0.4);transform:translateY(-3px);border-color:rgba(0,163,224,0.4)}
+.design-card.selected{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow), 0 12px 30px rgba(0,0,0,0.4)}
 .design-card.incompatible{opacity:0.45}
 .design-thumb{height:175px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .design-thumb-bg{position:absolute;inset:0}
 .design-thumb-icon{position:relative;z-index:1;font-size:60px;opacity:0.12}
-.design-thumb-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:14px;background:linear-gradient(to top,rgba(0,30,46,0.85) 0%,transparent 60%)}
+.design-thumb-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:14px;background:linear-gradient(to top,rgba(0,30,46,0.9) 0%,transparent 60%)}
 .design-thumb-name{color:#fff;font-size:15px;font-weight:800;letter-spacing:-0.3px}
 .design-thumb-builder{color:rgba(255,255,255,0.6);font-size:11px;font-weight:500;margin-top:2px}
 .design-compat-badge{position:absolute;top:10px;right:10px;z-index:3;padding:4px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
-.design-compat-badge.fit{background:var(--green);color:#fff}
-.design-compat-badge.tight{background:var(--amber);color:#fff}
-.design-compat-badge.no{background:var(--red);color:#fff}
+.design-compat-badge.fit{background:rgba(16,185,129,0.85);color:#fff}
+.design-compat-badge.tight{background:rgba(245,158,11,0.85);color:#fff}
+.design-compat-badge.no{background:rgba(239,68,68,0.85);color:#fff}
 .design-body{padding:16px}
 .design-specs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.design-spec-pill{display:flex;align-items:center;gap:4px;background:var(--silver-xlight);padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;color:var(--text-mid)}
+.design-spec-pill{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.06);padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.85)}
 .design-footer{display:flex;align-items:flex-end;justify-content:space-between}
 .design-price{font-size:16px;font-weight:800;color:var(--accent)}
-.design-size{font-size:11px;color:var(--text-light)}
-.design-frontage-req{font-size:10px;color:var(--text-xlight);margin-top:2px}
-.design-select-btn{margin-top:12px;width:100%;padding:9px;background:var(--navy);color:#fff;border:none;border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;transition:background var(--transition)}
+.design-size{font-size:11px;color:rgba(203,210,216,0.7)}
+.design-frontage-req{font-size:10px;color:rgba(203,210,216,0.55);margin-top:2px}
+.design-select-btn{margin-top:12px;width:100%;padding:9px;background:rgba(0,163,224,0.18);color:#fff;border:1px solid var(--accent);border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;transition:all var(--transition);cursor:pointer}
 .design-card.selected .design-select-btn{background:var(--accent)}
 .design-select-btn:hover{background:var(--accent)}
 /* ── Ausbuild-style Designs Filter Row ── */
-.ausbuild-filter-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;background:#fff;padding:16px 18px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-bottom:18px}
+.ausbuild-filter-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;background:var(--navy-mid);padding:16px 18px;border-radius:var(--radius-md);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 20px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);margin-bottom:18px}
 .afr-group{display:flex;flex-direction:column;gap:6px;min-width:0}
-.afr-label{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-light);display:flex;align-items:baseline;gap:6px}
+.afr-label{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:rgba(203,210,216,0.55);display:flex;align-items:baseline;gap:6px}
 .afr-chips{display:flex;flex-wrap:wrap;gap:6px}
-.afr-chip{padding:6px 12px;background:var(--silver-xlight);color:var(--text-mid);border:1px solid transparent;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition)}
-.afr-chip:hover{background:var(--silver-light);color:var(--navy)}
-.afr-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.afr-chip{padding:6px 12px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.78);border:1px solid rgba(255,255,255,0.12);border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition)}
+.afr-chip:hover{background:rgba(255,255,255,0.08);border-color:rgba(0,163,224,0.6);color:#fff}
+.afr-chip.active{background:rgba(0,163,224,0.18);color:#fff;border-color:var(--accent)}
 .afr-group-price{flex:1;min-width:200px;max-width:320px}
-.afr-price-val{font-size:11px;font-weight:700;color:var(--navy);text-transform:none;letter-spacing:0}
-.afr-slider{width:100%;-webkit-appearance:none;appearance:none;height:5px;background:var(--silver-light);border-radius:3px;outline:none;cursor:pointer}
-.afr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
-.afr-slider::-moz-range-thumb{width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.afr-price-val{font-size:11px;font-weight:700;color:var(--accent);text-transform:none;letter-spacing:0}
+.afr-slider{width:100%;-webkit-appearance:none;appearance:none;height:6px;background:rgba(255,255,255,0.12);border-radius:3px;outline:none;cursor:pointer}
+.afr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:3px solid var(--navy);box-shadow:0 2px 6px rgba(0,0,0,0.4)}
+.afr-slider::-moz-range-thumb{width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:3px solid var(--navy);box-shadow:0 2px 6px rgba(0,0,0,0.4)}
 
 /* ── Continue Footer ── */
 .continue-footer{
@@ -1922,11 +1922,15 @@ function renderLots(gridId, projectId) {
     if (l.stage) groups[f].stages.add(l.stage);
     if (l.price && l.price > 0) groups[f].prices.push(l.price);
   });
-  const frontageOptions = Object.values(groups).sort((a,b)=>a.frontage-b.frontage);
+  // Buyer has already secured land — only show frontages with at least one Available lot.
+  // Unreleased/coming-soon frontages aren't useful to someone who's already contracted.
+  const frontageOptions = Object.values(groups)
+    .filter(g => g.lots.some(l => l.availability === 'Available'))
+    .sort((a,b)=>a.frontage-b.frontage);
   const lbl = document.getElementById('lot-count-label');
-  if (lbl) lbl.textContent = frontageOptions.length + ' frontage option' + (frontageOptions.length!==1?'s':'') + ' in this project';
+  if (lbl) lbl.textContent = frontageOptions.length + ' frontage option' + (frontageOptions.length!==1?'s':'') + ' available in this project';
   if (!frontageOptions.length) {
-    grid.innerHTML = '<div class="no-results"><div class="icon">📐</div><p>No frontage data available yet for this project. Your consultant will confirm.</p></div>';
+    grid.innerHTML = '<div class="no-results"><div class="icon">📐</div><p>No available stock right now for this project. Your consultant will confirm next steps.</p></div>';
     return;
   }
   grid.innerHTML = frontageOptions.map(g => {
