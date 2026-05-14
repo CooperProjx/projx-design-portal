@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProjX | House &amp; Land Design Portal</title>
+<title>ProjX | Inquire About a Lot</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -14,7 +14,7 @@
   --silver:#CBD2D8;--silver-light:#E8EBED;--silver-xlight:#F4F5F7;
   --accent:#00A3E0;--accent-dark:#0082B3;--accent-glow:rgba(0,163,224,0.15);
   --green:#10B981;--amber:#F59E0B;--red:#EF4444;--white:#FFFFFF;
-  --bg:#001E2E;--text:#001E2E;--text-mid:#374151;--text-light:#6B7280;--text-xlight:#9CA3AF;
+  --bg:#F0F2F5;--text:#001E2E;--text-mid:#374151;--text-light:#6B7280;--text-xlight:#9CA3AF;
   --shadow-sm:0 1px 3px rgba(0,30,46,0.08),0 2px 6px rgba(0,30,46,0.04);
   --shadow-md:0 4px 12px rgba(0,30,46,0.1),0 2px 4px rgba(0,30,46,0.06);
   --shadow-lg:0 8px 24px rgba(0,30,46,0.12),0 4px 8px rgba(0,30,46,0.08);
@@ -60,13 +60,13 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 .top-home-btn.visible{display:block}
 
 /* ── Breadcrumb ── */
-.breadcrumb-bar{background:var(--navy-mid);border-bottom:1px solid rgba(255,255,255,0.06);padding:10px 28px;min-height:40px;display:flex;align-items:center}
+.breadcrumb-bar{background:#fff;border-bottom:1px solid var(--silver-light);padding:10px 28px;min-height:40px;display:flex;align-items:center}
 .breadcrumb{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.bc-item{font-size:12px;font-weight:600;color:rgba(203,210,216,0.55);transition:color var(--transition)}
+.bc-item{font-size:12px;font-weight:600;color:var(--text-xlight);transition:color var(--transition)}
 .bc-item.clickable{color:var(--accent);cursor:pointer}
-.bc-item.clickable:hover{color:#fff;text-decoration:underline}
-.bc-item.current{color:#fff;font-weight:700}
-.bc-sep{color:rgba(255,255,255,0.25);font-size:11px}
+.bc-item.clickable:hover{color:var(--accent-dark);text-decoration:underline}
+.bc-item.current{color:var(--navy);font-weight:700}
+.bc-sep{color:var(--silver);font-size:11px}
 
 /* ── View Container ── */
 .view{display:none;flex:1;flex-direction:column;animation:fadeSlideIn 0.3s ease}
@@ -75,49 +75,8 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 
 /* ── Landing: Map Hero ── */
 #view-landing{flex-direction:column}
-.map-section{position:relative;margin:14px 28px 28px;border-radius:var(--radius-lg);overflow:hidden;border:1px solid rgba(255,255,255,0.08);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 44px rgba(0,0,0,0.45)}
+.map-section{position:relative}
 #map{height:62vh;min-height:380px;width:100%;z-index:1}
-.map-split{display:flex;align-items:stretch;height:calc(100vh - 140px);min-height:520px}
-.map-pane{flex:1;position:relative;min-width:0;display:flex;flex-direction:column;background:#fff}
-.map-wrap{flex:1;position:relative;min-height:0}
-.map-split #map{height:100%;min-height:auto;width:100%}
-.map-pane .map-filter-bar{flex:0 0 auto;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent),var(--navy);border-bottom:1px solid rgba(255,255,255,0.08)}
-.map-pane .mfb-label{color:rgba(203,210,216,0.5)}
-.map-pane .mfb-chip{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.78)}
-.map-pane .mfb-chip.active{background:rgba(0,163,224,0.18);border-color:var(--accent);color:#fff;font-weight:700}
-.map-pane .mfb-chip:hover:not(.active){background:rgba(255,255,255,0.08);border-color:rgba(0,163,224,0.6);color:#fff}
-.map-pane .mfb-select{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.12);color:#fff}
-.map-pane .mfb-select:focus{border-color:var(--accent)}
-.map-pane .mfb-select.has-val{background:rgba(0,163,224,0.18);border-color:var(--accent);color:#fff}
-.map-pane .mfb-select option{background:var(--navy);color:#fff}
-.map-pane .mfb-clear{color:var(--accent)}
-.map-pane .mfb-clear:hover{color:#fff}
-.project-list-panel{flex:0 0 38%;background:var(--navy);overflow-y:auto;padding:14px 14px 18px;border-right:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;min-width:0}
-.project-list-header{color:#fff;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 6px 10px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.project-list-header span{color:var(--accent);font-weight:800;font-size:11px;letter-spacing:0.5px}
-#project-list{flex:1;overflow-y:auto;margin:0 -4px;padding:0 4px}
-.project-card{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:11px 12px;margin-bottom:8px;cursor:pointer;transition:all 200ms ease}
-.project-card:hover{background:rgba(255,255,255,0.09);border-color:var(--accent);transform:translateX(2px)}
-.project-card.faded{opacity:0.32;filter:grayscale(0.6);cursor:default}
-.project-card.faded:hover{transform:none;background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.08)}
-.pc-emoji{flex:0 0 44px;height:44px;background:rgba(255,255,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px}
-.pc-body{flex:1;min-width:0}
-.pc-name{color:#fff;font-size:14px;font-weight:700;letter-spacing:-0.2px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pc-sub{color:rgba(203,210,216,0.65);font-size:11px;font-weight:500;margin-bottom:5px}
-.pc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.pc-pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:rgba(255,202,87,0.18);color:var(--accent);letter-spacing:0.3px;white-space:nowrap}
-.pc-price{color:rgba(255,255,255,0.55);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pc-price strong{color:#fff;font-weight:700}
-.pc-arrow{color:rgba(255,255,255,0.35);font-size:18px;flex:0 0 16px;transition:all 200ms ease}
-.project-card:hover .pc-arrow{color:var(--accent);transform:translateX(2px)}
-.project-list-empty{padding:32px 16px;text-align:center;color:rgba(203,210,216,0.55);font-size:12px;font-style:italic}
-@media(max-width:900px){
-  .map-section{margin:0 0 14px;border-radius:0;border-left:none;border-right:none}
-  .map-split{flex-direction:column;height:auto;min-height:0}
-  .map-pane{flex:1 1 auto;min-height:0}
-  .map-wrap{height:50vh;min-height:300px}
-  .project-list-panel{flex:1 1 auto;max-height:50vh;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1)}
-}
 .map-overlay-header{
   position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:10;
   background:rgba(0,30,46,0.85);backdrop-filter:blur(12px);
@@ -296,82 +255,58 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 
 /* ── Section Headers ── */
 .view-header{margin-bottom:24px}
-.view-header h2{font-size:24px;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:6px}
-.view-header p{font-size:13px;color:rgba(203,210,216,0.7)}
+.view-header h2{font-size:24px;font-weight:800;color:var(--navy);letter-spacing:-0.5px;margin-bottom:6px}
+.view-header p{font-size:13px;color:var(--text-light)}
 .view-header-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .back-btn{
   display:flex;align-items:center;gap:6px;
-  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.85);
+  background:#fff;border:2px solid var(--silver-light);color:var(--text-mid);
   padding:9px 18px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;
-  transition:all var(--transition);white-space:nowrap;flex-shrink:0;margin-bottom:16px;cursor:pointer;
+  transition:all var(--transition);white-space:nowrap;flex-shrink:0;margin-bottom:16px;
 }
-.back-btn:hover{border-color:var(--accent);color:#fff;background:rgba(0,163,224,0.12)}
+.back-btn:hover{border-color:var(--navy);color:var(--navy)}
 
 /* ── Lot Filter Controls ── */
 .filter-bar{
-  background:var(--navy-mid);border-radius:var(--radius);padding:14px 18px;
-  box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 20px rgba(0,0,0,0.25);
-  border:1px solid rgba(255,255,255,0.06);margin-bottom:20px;
+  background:#fff;border-radius:var(--radius);padding:14px 18px;
+  box-shadow:var(--shadow-sm);margin-bottom:20px;
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
 }
 .filter-bar select{
-  padding:9px 12px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);
-  font-size:12px;font-weight:600;color:#fff;outline:none;
-  transition:border-color var(--transition);background:rgba(255,255,255,0.04);
+  padding:9px 12px;border:2px solid var(--silver-light);border-radius:var(--radius-sm);
+  font-size:12px;font-weight:600;color:var(--navy);outline:none;
+  transition:border-color var(--transition);background:#fff;
 }
 .filter-bar select:focus{border-color:var(--accent)}
-.filter-bar select option{background:var(--navy);color:#fff}
-.filter-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:rgba(203,210,216,0.55);display:block;margin-bottom:3px}
+.filter-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-xlight);display:block;margin-bottom:3px}
 .filter-group{display:flex;flex-direction:column}
-.filter-result-count{font-size:12px;color:rgba(203,210,216,0.6);margin-left:auto}
-.filter-chip{padding:7px 14px;border-radius:20px;border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:600;color:rgba(255,255,255,0.78);cursor:pointer;transition:all var(--transition);background:rgba(255,255,255,0.04)}
-.filter-chip.active{border-color:var(--accent);background:rgba(0,163,224,0.18);color:#fff}
-.filter-chip:hover:not(.active){border-color:rgba(0,163,224,0.6);background:rgba(255,255,255,0.08);color:#fff}
+.filter-result-count{font-size:12px;color:var(--text-xlight);margin-left:auto}
+.filter-chip{padding:7px 14px;border-radius:20px;border:2px solid var(--silver-light);font-size:11px;font-weight:600;color:var(--text-mid);cursor:pointer;transition:all var(--transition);background:#fff}
+.filter-chip.active{border-color:var(--navy);background:var(--navy);color:#fff}
+.filter-chip:hover:not(.active){border-color:var(--accent);color:var(--accent)}
 
 /* ── Lot Grid ── */
 .lot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.lot-card{background:var(--navy-mid);border-radius:var(--radius);padding:20px;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);transition:all 0.2s ease;cursor:pointer}
-.lot-card:hover{border-color:rgba(0,163,224,0.4);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 26px rgba(0,0,0,0.35);transform:translateY(-2px)}
-.lot-card.selected{border-color:var(--accent);background:linear-gradient(135deg,var(--navy-mid) 0%,rgba(0,163,224,0.12) 100%)}
-.lot-card.readonly{cursor:default}
-.lot-card.readonly:hover{transform:none}
-
-/* ── Frontage Cards (design-portal "confirm estate" view) ── */
-.frontage-card{background:var(--navy-mid);border-radius:var(--radius);padding:22px;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);transition:all 0.2s ease;cursor:pointer;display:flex;flex-direction:column}
-.frontage-card:hover{transform:translateY(-2px);border-color:rgba(0,163,224,0.4);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 26px rgba(0,0,0,0.35)}
-.frontage-card.selected{border-color:var(--accent);background:linear-gradient(135deg,var(--navy-mid) 0%,rgba(0,163,224,0.12) 100%);box-shadow:0 0 0 3px var(--accent-glow), 0 10px 26px rgba(0,0,0,0.35)}
-.frontage-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
-.frontage-project{font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.3px}
-.frontage-stage{font-size:11px;color:rgba(203,210,216,0.65);margin-top:3px;font-weight:600}
-.frontage-value-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:18px;text-align:center;margin-bottom:14px}
-.frontage-card.selected .frontage-value-block{background:rgba(0,163,224,0.12);border-color:rgba(0,163,224,0.25)}
-.frontage-value{font-size:36px;font-weight:900;color:#fff;letter-spacing:-1.5px;line-height:1}
-.frontage-card.selected .frontage-value{color:var(--accent)}
-.frontage-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:rgba(203,210,216,0.55);margin-top:6px}
-.frontage-from-price{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:14px;padding:8px 12px;background:rgba(0,163,224,0.08);border-radius:var(--radius-sm)}
-.ffp-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:rgba(203,210,216,0.65)}
-.ffp-val{font-size:15px;font-weight:800;color:var(--accent);letter-spacing:-0.3px}
-.frontage-card.selected .frontage-from-price{background:rgba(0,163,224,0.18)}
-.frontage-select-btn{margin-top:auto;width:100%;padding:10px;background:rgba(0,163,224,0.18);color:#fff;border:1px solid var(--accent);border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;transition:all var(--transition)}
-.frontage-select-btn:hover{background:var(--accent)}
-.frontage-card.selected .frontage-select-btn{background:var(--accent)}
+.lot-card{background:#fff;border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);border:2px solid transparent;transition:all 0.2s ease;cursor:pointer}
+.lot-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.lot-card.selected{border-color:var(--accent);background:linear-gradient(135deg,#fff 0%,#f0f9ff 100%)}
 .lot-card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
-.lot-name{font-size:18px;font-weight:800;color:#fff}
-.lot-stage{font-size:10px;font-weight:600;color:rgba(203,210,216,0.55);margin-top:2px}
+.lot-name{font-size:18px;font-weight:800;color:var(--navy)}
+.lot-stage{font-size:10px;font-weight:600;color:var(--text-xlight);margin-top:2px}
 .lot-avail{padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
-.lot-avail.Available{background:rgba(16,185,129,0.18);color:#6EE7B7}
-.lot-avail.Reserved{background:rgba(99,102,241,0.18);color:#A5B4FC}
-.lot-avail.Unreleased{background:rgba(255,255,255,0.08);color:rgba(203,210,216,0.7)}
+.lot-avail.Available{background:#D1FAE5;color:#065F46}
+.lot-avail.Reserved{background:#E0E7FF;color:#3730A3}
+.lot-avail.Unreleased{background:#F3F4F6;color:#6B7280}
 .lot-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.lot-spec{padding:8px 10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);text-align:center}
-.lot-spec .sv{font-size:16px;font-weight:800;color:#fff}
-.lot-spec .sl{font-size:9px;font-weight:600;color:rgba(203,210,216,0.55);text-transform:uppercase;letter-spacing:0.3px}
+.lot-spec{padding:8px 10px;background:var(--silver-xlight);border-radius:var(--radius-sm);text-align:center}
+.lot-spec .sv{font-size:16px;font-weight:800;color:var(--navy)}
+.lot-spec .sl{font-size:9px;font-weight:600;color:var(--text-xlight);text-transform:uppercase;letter-spacing:0.3px}
 .lot-price-row{display:flex;align-items:center;justify-content:space-between}
 .lot-price{font-size:20px;font-weight:800;color:var(--accent)}
-.lot-select-btn{background:rgba(0,163,224,0.18);color:#fff;border:1px solid var(--accent);padding:9px 16px;border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;transition:all var(--transition);cursor:pointer}
+.lot-select-btn{background:var(--navy);color:#fff;border:none;padding:9px 16px;border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;transition:background var(--transition)}
 .lot-card.selected .lot-select-btn{background:var(--accent)}
 .lot-select-btn:hover{background:var(--accent)}
-.no-results{grid-column:1/-1;text-align:center;padding:52px 20px;color:rgba(203,210,216,0.6);font-size:14px}
+.no-results{grid-column:1/-1;text-align:center;padding:52px 20px;color:var(--text-xlight);font-size:14px}
 .no-results .icon{font-size:42px;margin-bottom:10px}
 
 /* ── Builder Grid (Select for Lot) ── */
@@ -383,14 +318,6 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 }
 .builder-select-card.maxed{opacity:0.45;cursor:not-allowed}
 .builder-select-card.maxed .bsc-select-btn{pointer-events:none}
-.builder-select-card.ineligible .bsc-face{background:rgba(255,255,255,0.02)}
-.builder-select-card.ineligible .bsc-logo,
-.builder-select-card.ineligible .bsc-name,
-.builder-select-card.ineligible .bsc-tagline,
-.builder-select-card.ineligible .bsc-tier{opacity:0.55}
-.builder-select-card.ineligible .bsc-select-btn{background:rgba(255,255,255,0.05);color:rgba(203,210,216,0.4);cursor:not-allowed;border-color:rgba(255,255,255,0.08)}
-.builder-select-card.ineligible .bsc-select-btn:hover{background:rgba(255,255,255,0.05)}
-.bsc-no-fit{color:#FCA5A5;font-weight:700;font-size:11px;letter-spacing:0.2px}
 .bsc-flip-inner{
   position:relative;width:100%;height:100%;min-height:340px;
   transform-style:preserve-3d;transition:transform 0.6s cubic-bezier(.4,.2,.2,1);
@@ -398,168 +325,146 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 .builder-select-card.flipped .bsc-flip-inner{transform:rotateY(180deg)}
 .bsc-face{
   position:absolute;inset:0;width:100%;min-height:340px;
-  background:var(--navy-mid);border-radius:var(--radius-lg);padding:22px;
-  box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);
-  border:1px solid rgba(255,255,255,0.06);
+  background:#fff;border-radius:var(--radius-lg);padding:22px;
+  box-shadow:var(--shadow-sm);border:2px solid transparent;
   transition:border-color 0.2s ease, box-shadow 0.2s ease;
   -webkit-backface-visibility:hidden;backface-visibility:hidden;
   display:flex;flex-direction:column;
 }
 .bsc-front{}
 .bsc-back{transform:rotateY(180deg)}
-.builder-select-card:hover .bsc-face{border-color:rgba(0,163,224,0.4);box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 10px 26px rgba(0,0,0,0.35)}
-.builder-select-card.selected .bsc-face{border-color:var(--accent);background:linear-gradient(135deg,var(--navy-mid) 0%,rgba(0,163,224,0.15) 100%);box-shadow:0 0 0 3px var(--accent-glow), 0 10px 26px rgba(0,0,0,0.35)}
+.builder-select-card:hover .bsc-face{box-shadow:var(--shadow-md)}
+.builder-select-card.selected .bsc-face{border-color:var(--accent);background:linear-gradient(135deg,#fff 0%,#f0f9ff 100%)}
 .bsc-fit-count{margin-top:10px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.2px}
-.bsc-front-actions{margin-top:auto;padding-top:14px;display:flex;flex-direction:column;gap:8px}
-.bsc-flip-hint{font-size:10px;color:rgba(203,210,216,0.55);text-transform:uppercase;letter-spacing:0.5px;text-align:center}
-.bsc-select-btn-front{padding:9px}
-.bsc-back-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:6px}
-.bsc-back-blurb{font-size:12px;color:rgba(203,210,216,0.75);line-height:1.5;margin-bottom:14px}
-.bsc-select-btn{margin-top:auto;width:100%;padding:11px;background:rgba(0,163,224,0.18);color:#fff;border:1px solid var(--accent);border-radius:var(--radius-sm);font-size:12px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;cursor:pointer;transition:all var(--transition)}
+.bsc-flip-hint{margin-top:auto;font-size:10px;color:var(--text-xlight);text-transform:uppercase;letter-spacing:0.5px;padding-top:14px}
+.bsc-back-name{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.bsc-back-blurb{font-size:12px;color:var(--text-mid);line-height:1.5;margin-bottom:14px}
+.bsc-select-btn{margin-top:auto;width:100%;padding:11px;background:var(--navy);color:#fff;border:none;border-radius:var(--radius-sm);font-size:12px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;cursor:pointer;transition:background var(--transition)}
 .bsc-select-btn:hover{background:var(--accent)}
 .builder-select-card.selected .bsc-select-btn{background:var(--accent)}
-.bsc-check{position:absolute;top:14px;right:14px;width:26px;height:26px;border:2px solid rgba(255,255,255,0.25);border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
+.bsc-check{position:absolute;top:14px;right:14px;width:26px;height:26px;border:2px solid var(--silver);border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
 .builder-select-card.selected .bsc-check{background:var(--accent);border-color:var(--accent)}
-.bsc-logo{width:130px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;margin-bottom:14px;overflow:hidden;padding:0;box-sizing:border-box;background:#fff}
-.bsc-logo img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block}
-.bsc-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:2px}
-.bsc-tagline{font-size:11px;color:rgba(203,210,216,0.7);margin-bottom:12px}
+.bsc-logo{width:64px;height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;margin-bottom:14px;overflow:hidden;border:1px solid var(--silver-light)}
+.bsc-logo img{max-width:80%;max-height:80%;object-fit:contain}
+.bsc-name{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:2px}
+.bsc-tagline{font-size:11px;color:var(--text-light);margin-bottom:12px}
 .bsc-attrs{display:flex;flex-direction:column;gap:6px}
 .bsc-attr{display:flex;align-items:center;gap:8px;font-size:11px}
-.bsc-attr-icon{width:24px;height:24px;background:rgba(255,255,255,0.08);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
-.bsc-attr-lbl{color:rgba(203,210,216,0.7)}
-.bsc-attr-val{font-weight:700;color:#fff;margin-left:auto}
+.bsc-attr-icon{width:24px;height:24px;background:var(--silver-xlight);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.bsc-attr-lbl{color:var(--text-light)}
+.bsc-attr-val{font-weight:700;color:var(--navy);margin-left:auto}
 .bsc-tier{display:inline-block;margin-top:12px;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-.tier-entry{background:rgba(34,197,94,0.18);color:#86EFAC}
-.tier-entry-mid{background:rgba(59,130,246,0.18);color:#93C5FD}
-.tier-mid{background:rgba(99,102,241,0.18);color:#A5B4FC}
-.tier-mid-premium{background:rgba(168,85,247,0.18);color:#D8B4FE}
-.tier-premium{background:rgba(249,115,22,0.18);color:#FDBA74}
+.tier-entry{background:#F0FDF4;color:#166534}
+.tier-entry-mid{background:#EFF6FF;color:#1E40AF}
+.tier-mid{background:#EEF2FF;color:#3730A3}
+.tier-mid-premium{background:#FDF4FF;color:#6B21A8}
+.tier-premium{background:#FFF7ED;color:#9A3412}
 .builder-max-hint{
-  text-align:center;padding:12px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);
-  font-size:12px;color:rgba(203,210,216,0.75);margin-bottom:16px;
+  text-align:center;padding:12px 16px;background:var(--silver-xlight);border-radius:var(--radius-sm);
+  font-size:12px;color:var(--text-mid);margin-bottom:16px;
 }
-.builder-max-hint strong{color:#fff}
-
-/* ── Builder pagination (side arrows, 6 per page) ── */
-.builder-grid-wrap{display:flex;align-items:stretch;gap:14px}
-.builder-grid-wrap .builder-select-grid{flex:1;min-width:0}
-.bp-side-arrow{flex-shrink:0;align-self:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--silver-light);background:#fff;color:var(--navy);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--transition);box-shadow:var(--shadow-sm)}
-.bp-side-arrow:hover:not(:disabled){background:var(--accent);color:#fff;border-color:var(--accent);transform:scale(1.05);box-shadow:var(--shadow-md)}
-.bp-side-arrow:disabled{opacity:0.3;cursor:not-allowed}
-.bp-dots{display:flex;justify-content:center;gap:8px;margin-top:18px}
-.bp-dot{width:8px;height:8px;border-radius:50%;background:var(--silver-light);transition:all var(--transition);cursor:pointer;border:none;padding:0}
-.bp-dot.active{background:var(--accent);width:24px;border-radius:4px}
-.bp-dot:hover:not(.active){background:var(--silver)}
-@media (max-width:780px){
-  .builder-grid-wrap{gap:8px}
-  .bp-side-arrow{width:40px;height:40px}
-}
+.builder-max-hint strong{color:var(--navy)}
 
 /* ── Design Grid ── */
 .design-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-.design-card{background:var(--navy-mid);border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);transition:all 0.2s ease;cursor:pointer}
-.design-card:hover{box-shadow:0 1px 0 rgba(255,255,255,0.06) inset, 0 12px 30px rgba(0,0,0,0.4);transform:translateY(-3px);border-color:rgba(0,163,224,0.4)}
-.design-card.selected{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow), 0 12px 30px rgba(0,0,0,0.4)}
+.design-card{background:#fff;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);border:2px solid transparent;transition:all 0.2s ease;cursor:pointer}
+.design-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.design-card.selected{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-glow),var(--shadow-md)}
 .design-card.incompatible{opacity:0.45}
 .design-thumb{height:175px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .design-thumb-bg{position:absolute;inset:0}
 .design-thumb-icon{position:relative;z-index:1;font-size:60px;opacity:0.12}
-.design-thumb-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:14px;background:linear-gradient(to top,rgba(0,30,46,0.9) 0%,transparent 60%)}
+.design-thumb-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:14px;background:linear-gradient(to top,rgba(0,30,46,0.85) 0%,transparent 60%)}
 .design-thumb-name{color:#fff;font-size:15px;font-weight:800;letter-spacing:-0.3px}
 .design-thumb-builder{color:rgba(255,255,255,0.6);font-size:11px;font-weight:500;margin-top:2px}
 .design-compat-badge{position:absolute;top:10px;right:10px;z-index:3;padding:4px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px}
-.design-compat-badge.fit{background:rgba(16,185,129,0.85);color:#fff}
-.design-compat-badge.tight{background:rgba(245,158,11,0.85);color:#fff}
-.design-compat-badge.no{background:rgba(239,68,68,0.85);color:#fff}
+.design-compat-badge.fit{background:var(--green);color:#fff}
+.design-compat-badge.tight{background:var(--amber);color:#fff}
+.design-compat-badge.no{background:var(--red);color:#fff}
 .design-body{padding:16px}
 .design-specs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.design-spec-pill{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.06);padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;color:rgba(255,255,255,0.85)}
+.design-spec-pill{display:flex;align-items:center;gap:4px;background:var(--silver-xlight);padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;color:var(--text-mid)}
 .design-footer{display:flex;align-items:flex-end;justify-content:space-between}
 .design-price{font-size:16px;font-weight:800;color:var(--accent)}
-.design-size{font-size:11px;color:rgba(203,210,216,0.7)}
-.design-frontage-req{font-size:10px;color:rgba(203,210,216,0.55);margin-top:2px}
-.design-select-btn{margin-top:12px;width:100%;padding:9px;background:rgba(0,163,224,0.18);color:#fff;border:1px solid var(--accent);border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;transition:all var(--transition);cursor:pointer}
+.design-size{font-size:11px;color:var(--text-light)}
+.design-frontage-req{font-size:10px;color:var(--text-xlight);margin-top:2px}
+.design-select-btn{margin-top:12px;width:100%;padding:9px;background:var(--navy);color:#fff;border:none;border-radius:var(--radius-sm);font-size:11px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;transition:background var(--transition)}
 .design-card.selected .design-select-btn{background:var(--accent)}
 .design-select-btn:hover{background:var(--accent)}
 /* ── Ausbuild-style Designs Filter Row ── */
-.ausbuild-filter-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;background:var(--navy-mid);padding:16px 18px;border-radius:var(--radius-md);box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 8px 20px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);margin-bottom:18px}
+.ausbuild-filter-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;background:#fff;padding:16px 18px;border-radius:var(--radius-md);box-shadow:var(--shadow-sm);margin-bottom:18px}
 .afr-group{display:flex;flex-direction:column;gap:6px;min-width:0}
-.afr-label{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:rgba(203,210,216,0.55);display:flex;align-items:baseline;gap:6px}
+.afr-label{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-light);display:flex;align-items:baseline;gap:6px}
 .afr-chips{display:flex;flex-wrap:wrap;gap:6px}
-.afr-chip{padding:6px 12px;background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.78);border:1px solid rgba(255,255,255,0.12);border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition)}
-.afr-chip:hover{background:rgba(255,255,255,0.08);border-color:rgba(0,163,224,0.6);color:#fff}
-.afr-chip.active{background:rgba(0,163,224,0.18);color:#fff;border-color:var(--accent)}
+.afr-chip{padding:6px 12px;background:var(--silver-xlight);color:var(--text-mid);border:1px solid transparent;border-radius:18px;font-size:12px;font-weight:600;cursor:pointer;transition:all var(--transition)}
+.afr-chip:hover{background:var(--silver-light);color:var(--navy)}
+.afr-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .afr-group-price{flex:1;min-width:200px;max-width:320px}
-.afr-price-val{font-size:11px;font-weight:700;color:var(--accent);text-transform:none;letter-spacing:0}
-.afr-slider{width:100%;-webkit-appearance:none;appearance:none;height:6px;background:rgba(255,255,255,0.12);border-radius:3px;outline:none;cursor:pointer}
-.afr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:3px solid var(--navy);box-shadow:0 2px 6px rgba(0,0,0,0.4)}
-.afr-slider::-moz-range-thumb{width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:3px solid var(--navy);box-shadow:0 2px 6px rgba(0,0,0,0.4)}
+.afr-price-val{font-size:11px;font-weight:700;color:var(--navy);text-transform:none;letter-spacing:0}
+.afr-slider{width:100%;-webkit-appearance:none;appearance:none;height:5px;background:var(--silver-light);border-radius:3px;outline:none;cursor:pointer}
+.afr-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.afr-slider::-moz-range-thumb{width:18px;height:18px;background:var(--accent);border-radius:50%;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
 
 /* ── Continue Footer ── */
 .continue-footer{
-  background:var(--navy-mid);border-top:1px solid rgba(255,255,255,0.08);
+  background:#fff;border-top:1px solid var(--silver-light);
   padding:18px 28px;display:flex;align-items:center;justify-content:space-between;
-  position:sticky;bottom:0;z-index:50;box-shadow:0 -8px 24px rgba(0,0,0,0.25);
+  position:sticky;bottom:0;z-index:50;
 }
-.continue-footer-left{font-size:12px;color:rgba(203,210,216,0.65)}
-.continue-footer-left strong{color:#fff}
+.continue-footer-left{font-size:12px;color:var(--text-xlight)}
+.continue-footer-left strong{color:var(--navy)}
 .continue-btn{
-  background:var(--accent);color:#fff;border:none;
+  background:var(--navy);color:#fff;border:none;
   padding:13px 32px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;
-  letter-spacing:0.5px;transition:all var(--transition);cursor:pointer;
+  letter-spacing:0.5px;transition:all var(--transition);
   display:flex;align-items:center;gap:8px;
 }
-.continue-btn:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,163,224,0.3)}
-.continue-btn:disabled{background:rgba(255,255,255,0.06);color:rgba(203,210,216,0.4);cursor:not-allowed;transform:none;box-shadow:none}
+.continue-btn:hover{background:var(--accent)}
+.continue-btn:disabled{background:var(--silver-light);color:var(--text-xlight);cursor:not-allowed}
 .continue-btn svg{transition:transform var(--transition)}
 .continue-btn:hover:not(:disabled) svg{transform:translateX(3px)}
 .validation-msg{
-  background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);border-radius:var(--radius-sm);
-  padding:10px 14px;font-size:12px;color:#FCA5A5;display:none;
+  background:#FEF2F2;border:1px solid #FECACA;border-radius:var(--radius-sm);
+  padding:10px 14px;font-size:12px;color:var(--red);display:none;
 }
 .validation-msg.visible{display:block}
 
 /* ── Customize View ── */
 .customize-layout{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
-.customize-section{background:var(--navy-mid);border-radius:var(--radius-lg);padding:22px;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);margin-bottom:18px}
-.customize-section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.customize-section{background:#fff;border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.customize-section-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--silver-xlight)}
 .facade-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.facade-option{border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:14px;cursor:pointer;transition:all var(--transition);background:rgba(255,255,255,0.03)}
-.facade-option:hover{border-color:rgba(0,163,224,0.6);background:rgba(255,255,255,0.06)}
-.facade-option.selected{border-color:var(--accent);background:rgba(0,163,224,0.12)}
+.facade-option{border:2px solid var(--silver-light);border-radius:var(--radius);padding:14px;cursor:pointer;transition:all var(--transition)}
+.facade-option:hover{border-color:var(--accent)}
+.facade-option.selected{border-color:var(--accent);background:var(--accent-glow)}
 .facade-thumb{height:70px;border-radius:var(--radius-sm);margin-bottom:10px;display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;overflow:hidden}
-.facade-thumb-bg{position:absolute;inset:0;opacity:0.35}
-.facade-thumb-icon{position:relative;z-index:1;opacity:0.65}
-.facade-name{font-size:12px;font-weight:700;color:#fff}
-.facade-price{font-size:11px;color:rgba(203,210,216,0.65);margin-top:2px}
+.facade-thumb-bg{position:absolute;inset:0}
+.facade-thumb-icon{position:relative;z-index:1;opacity:0.45}
+.facade-name{font-size:12px;font-weight:700;color:var(--navy)}
+.facade-price{font-size:11px;color:var(--text-light);margin-top:2px}
 .inclusions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.incl-option{border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);padding:16px 12px;cursor:pointer;transition:all var(--transition);text-align:center;background:rgba(255,255,255,0.03)}
-.incl-option:hover{border-color:rgba(0,163,224,0.6);background:rgba(255,255,255,0.06)}
-.incl-option.selected{border-color:var(--accent);background:rgba(0,163,224,0.18)}
+.incl-option{border:2px solid var(--silver-light);border-radius:var(--radius);padding:16px 12px;cursor:pointer;transition:all var(--transition);text-align:center}
+.incl-option:hover{border-color:var(--accent)}
+.incl-option.selected{border-color:var(--navy);background:var(--navy)}
 .incl-option.selected .incl-name,.incl-option.selected .incl-price{color:#fff}
-.incl-option.selected .incl-desc{color:rgba(255,255,255,0.75)}
-.incl-name{font-size:14px;font-weight:800;color:#fff;margin-bottom:6px}
-.incl-desc{font-size:10px;color:rgba(203,210,216,0.65);margin-bottom:10px;line-height:1.4}
+.incl-option.selected .incl-desc{color:rgba(255,255,255,0.65)}
+.incl-name{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.incl-desc{font-size:10px;color:var(--text-light);margin-bottom:10px;line-height:1.4}
 .incl-price{font-size:13px;font-weight:700;color:var(--accent)}
 .upgrades-list{display:flex;flex-direction:column;gap:10px}
-.upgrade-item{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius);cursor:pointer;transition:all var(--transition);background:rgba(255,255,255,0.03)}
-.upgrade-item:hover{border-color:rgba(0,163,224,0.6);background:rgba(255,255,255,0.06)}
-.upgrade-item.selected{border-color:var(--accent);background:rgba(0,163,224,0.12)}
-.upgrade-check{width:22px;height:22px;border:2px solid rgba(255,255,255,0.25);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
+.upgrade-item{display:flex;align-items:center;gap:12px;padding:13px 14px;border:2px solid var(--silver-light);border-radius:var(--radius);cursor:pointer;transition:all var(--transition)}
+.upgrade-item:hover{border-color:var(--accent)}
+.upgrade-item.selected{border-color:var(--accent);background:var(--accent-glow)}
+.upgrade-check{width:22px;height:22px;border:2px solid var(--silver);border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all var(--transition)}
 .upgrade-item.selected .upgrade-check{background:var(--accent);border-color:var(--accent)}
 .upgrade-icon{font-size:20px;flex-shrink:0}
 .upgrade-info{flex:1}
-.upgrade-name{font-size:12px;font-weight:700;color:#fff}
-.upgrade-desc{font-size:11px;color:rgba(203,210,216,0.65);margin-top:1px}
-.upgrade-price{font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0;text-align:right}
-.upgrade-item.bundled{background:rgba(255,255,255,0.04);border-style:dashed;border-color:rgba(255,255,255,0.15);cursor:default}
-.upgrade-item.bundled:hover{border-color:rgba(255,255,255,0.15);background:rgba(255,255,255,0.04)}
-.upgrade-item.bundled.selected{background:rgba(255,255,255,0.04);border-color:var(--accent);border-style:solid}
-.upgrade-included{display:inline-block;padding:3px 8px;background:rgba(16,185,129,0.85);color:#fff;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;white-space:nowrap}
+.upgrade-name{font-size:12px;font-weight:700;color:var(--navy)}
+.upgrade-desc{font-size:11px;color:var(--text-light);margin-top:1px}
+.upgrade-price{font-size:12px;font-weight:700;color:var(--accent);flex-shrink:0}
 
 /* ── Pricing Sidebar ── */
-.pricing-sidebar{background:var(--navy);border-radius:var(--radius-lg);padding:22px;color:#fff;position:sticky;top:76px;border:1px solid rgba(0,163,224,0.35);box-shadow:0 0 0 3px rgba(0,163,224,0.08), 0 12px 30px rgba(0,0,0,0.45)}
+.pricing-sidebar{background:var(--navy);border-radius:var(--radius-lg);padding:22px;color:#fff;position:sticky;top:76px}
 .pricing-sidebar h3{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--silver);margin-bottom:16px}
 .pricing-design-preview{padding:12px;background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);margin-bottom:14px}
 .pricing-design-name{font-size:13px;font-weight:700;color:#fff}
@@ -586,78 +491,52 @@ input,select,textarea{font-family:'Montserrat',sans-serif}
 .summary-hero-right{text-align:right}
 .summary-hero-right .proj-name{font-size:18px;font-weight:800;color:#fff}
 .summary-hero-right .proj-sub{font-size:12px;color:var(--silver);margin-top:2px}
-.summary-grid{display:grid;grid-template-columns:1fr;gap:18px;padding:14px 28px 0 28px;max-width:1200px;margin:0 auto;width:100%}
-.summary-card{background:var(--navy-mid);border-radius:var(--radius-lg);padding:22px;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06)}
+.summary-grid{display:grid;grid-template-columns:1fr;gap:18px;padding:28px 28px 0 28px;max-width:1200px;margin:0 auto;width:100%}
+.summary-card{background:#fff;border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm)}
 .summary-card-full{grid-column:1 / -1}
-.lot-summary-head{padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid rgba(255,255,255,0.08)}
-.lot-summary-lotid{font-size:26px;font-weight:900;color:#fff;letter-spacing:-0.6px;line-height:1.05}
-.lot-summary-proj{font-size:13px;color:rgba(203,210,216,0.7);margin-top:6px;font-weight:600}
-.lot-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
-.lot-summary-fact{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:14px 16px;transition:background var(--transition)}
-.lot-summary-fact:hover{background:rgba(0,163,224,0.1)}
-.lsf-icon{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.lsf-text{display:flex;flex-direction:column;gap:3px;min-width:0}
-.lsf-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:rgba(203,210,216,0.55)}
-.lsf-val{font-size:15px;font-weight:800;color:#fff;letter-spacing:-0.2px}
-.compare-grid{display:grid;gap:18px;padding:24px 28px 28px 28px;max-width:1200px;margin:0 auto;width:100%}
+.compare-grid{display:grid;gap:18px;padding:0 28px 28px 28px;max-width:1200px;margin:0 auto;width:100%}
 .compare-grid.one-col{grid-template-columns:1fr}
 .compare-grid.two-col{grid-template-columns:1fr 1fr}
-.compare-col{background:var(--navy-mid);border-radius:var(--radius-lg);padding:22px;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:18px}
-.compare-col-header{padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.compare-col{background:#fff;border-radius:var(--radius-lg);padding:22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:18px}
+.compare-col-header{padding-bottom:14px;border-bottom:1px solid var(--silver-light)}
 .compare-col-label{font-size:10px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
-.compare-col-name{font-size:18px;font-weight:800;color:#fff;letter-spacing:-0.3px}
-.compare-col-builder{font-size:12px;color:rgba(203,210,216,0.7);margin-top:2px}
-.compare-section h5{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:rgba(203,210,216,0.55);margin-bottom:10px}
-.compare-total{margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-weight:800}
-.compare-total .s-lbl{font-weight:700;color:#fff}
+.compare-col-name{font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-0.3px}
+.compare-col-builder{font-size:12px;color:var(--text-mid);margin-top:2px}
+.compare-section h5{font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-light);margin-bottom:10px}
+.compare-total{margin-top:8px;padding-top:10px;border-top:1px solid var(--silver-light);font-weight:800}
+.compare-total .s-lbl{font-weight:700;color:var(--navy)}
 .compare-total .s-val{color:var(--accent);font-size:15px}
 @media (max-width:780px){ .compare-grid.two-col{grid-template-columns:1fr} }
-.eoi-choice-inline{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:18px}
-.eoi-choice-label{font-size:12px;font-weight:700;color:#fff;margin-bottom:10px}
+.eoi-choice-inline{background:var(--silver-xlight);border-radius:var(--radius-md);padding:14px 16px;margin-bottom:18px}
+.eoi-choice-label{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:10px}
 .eoi-choice-options{display:flex;gap:10px;flex-wrap:wrap}
-.eoi-choice-opt{flex:1;min-width:200px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;transition:all var(--transition);font-size:13px;font-weight:600;color:#fff}
-.eoi-choice-opt:has(input:checked){border-color:var(--accent);background:rgba(0,163,224,0.18);box-shadow:0 0 0 3px var(--accent-glow)}
+.eoi-choice-opt{flex:1;min-width:200px;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid var(--silver-light);border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;transition:all var(--transition);font-size:13px;font-weight:600;color:var(--navy)}
+.eoi-choice-opt:has(input:checked){border-color:var(--accent);background:linear-gradient(135deg,#fff 0%,#f0f9ff 100%);box-shadow:0 0 0 3px var(--accent-glow)}
 .eoi-choice-opt input{accent-color:var(--accent);width:18px;height:18px}
-.summary-card h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:rgba(203,210,216,0.55);margin-bottom:14px}
-.summary-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:12px}
+.summary-card h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);margin-bottom:14px}
+.summary-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--silver-xlight);font-size:12px}
 .summary-row:last-child{border-bottom:none}
-.summary-row .s-lbl{color:rgba(203,210,216,0.65)}
-.summary-row .s-val{font-weight:700;color:#fff}
-.eoi-section{background:var(--navy-mid);border-radius:var(--radius-lg);padding:26px;box-shadow:0 1px 0 rgba(255,255,255,0.04) inset, 0 6px 18px rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.06);margin:0 28px 28px}
-.eoi-section h3{font-size:19px;font-weight:800;color:#fff;margin-bottom:4px}
-.eoi-section .eoi-sub{font-size:13px;color:rgba(203,210,216,0.65);margin-bottom:22px}
+.summary-row .s-lbl{color:var(--text-light)}
+.summary-row .s-val{font-weight:700;color:var(--navy)}
+.eoi-section{background:#fff;border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow-sm);margin:24px 28px 28px;max-width:1200px;margin-left:auto;margin-right:auto}
+.eoi-section h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.eoi-section .eoi-sub{font-size:13px;color:var(--text-light);margin-bottom:22px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .form-field{display:flex;flex-direction:column;gap:5px}
 .form-field.full{grid-column:1/-1}
-.form-field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:rgba(203,210,216,0.6)}
-.form-field input,.form-field select,.form-field textarea{padding:11px 13px;border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-sm);font-size:14px;color:#fff;outline:none;transition:border-color var(--transition);background:rgba(255,255,255,0.04)}
-.form-field input::placeholder,.form-field textarea::placeholder{color:rgba(203,210,216,0.4)}
-.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--accent);background:rgba(255,255,255,0.06)}
-.form-field select option{background:var(--navy);color:#fff}
+.form-field label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-mid)}
+.form-field input,.form-field select,.form-field textarea{padding:11px 13px;border:2px solid var(--silver-light);border-radius:var(--radius-sm);font-size:14px;color:var(--navy);outline:none;transition:border-color var(--transition);background:#fff}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--accent)}
 .form-field textarea{resize:vertical;min-height:76px}
-.eoi-disclaimer{padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-sm);font-size:11px;color:rgba(203,210,216,0.65);margin:14px 0;line-height:1.5}
-.btn-submit{width:100%;padding:15px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;letter-spacing:0.5px;transition:all var(--transition);cursor:pointer}
-.btn-submit:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,163,224,0.3)}
-.success-state{text-align:center;padding:48px 20px;display:none;max-width:680px;margin:0 auto}
+.eoi-disclaimer{padding:12px 14px;background:var(--silver-xlight);border-radius:var(--radius-sm);font-size:11px;color:var(--text-light);margin:14px 0;line-height:1.5}
+.btn-submit{width:100%;padding:15px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:14px;font-weight:700;letter-spacing:0.5px;transition:all var(--transition)}
+.btn-submit:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.success-state{text-align:center;padding:48px 20px;display:none}
 .success-state.visible{display:block}
-.success-summary{margin-top:28px;text-align:left;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-md);padding:18px 20px;font-size:13px;color:rgba(203,210,216,0.85)}
-.success-summary h4{font-size:11px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase;color:rgba(203,210,216,0.55);margin:0 0 10px}
-.success-summary .ss-row{display:flex;justify-content:space-between;gap:14px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:12px}
-.success-summary .ss-row:last-child{border-bottom:none}
-.success-summary .ss-lbl{color:rgba(203,210,216,0.65)}
-.success-summary .ss-val{color:#fff;font-weight:700;text-align:right}
-.success-summary .ss-total{margin-top:8px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08);font-weight:800}
-.success-summary .ss-total .ss-val{color:var(--accent);font-size:14px}
-.success-actions{margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.success-action-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff !important;border:1px solid var(--accent);padding:11px 18px;border-radius:var(--radius-sm);font-size:12px;font-weight:700;letter-spacing:0.3px;text-decoration:none;cursor:pointer;transition:all var(--transition)}
-.success-action-btn:hover{background:var(--accent-dark);box-shadow:0 6px 16px rgba(0,163,224,0.3)}
-.success-action-btn.secondary{background:rgba(255,255,255,0.04);color:#fff !important;border:1px solid rgba(255,255,255,0.18)}
-.success-action-btn.secondary:hover{border-color:var(--accent);color:#fff !important;background:rgba(0,163,224,0.12)}
-.success-email-note{margin-top:14px;font-size:11px;color:var(--text-xlight)}
 .eoi-form-inner.hidden{display:none}
 .success-icon{font-size:52px;margin-bottom:14px}
-.success-state h3{font-size:21px;font-weight:800;color:#fff;margin-bottom:8px}
-.success-state p{font-size:13px;color:rgba(203,210,216,0.7);max-width:400px;margin:0 auto}
+.success-state h3{font-size:21px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.success-state p{font-size:13px;color:var(--text-light);max-width:400px;margin:0 auto}
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -937,36 +816,19 @@ html,body{overflow-x:hidden;max-width:100vw}
 </head>
 <body>
 
-<!-- ── Password Gate ── -->
-<div id="auth-gate">
-  <div class="gate-wrap">
-    <div class="gate-logo">PX</div>
-    <div class="gate-box">
-      <div class="gate-badge">⚠ Confidential — Consultant Access Only</div>
-      <h2>House &amp; Land Design Portal</h2>
-      <p class="gate-sub">Enter your access code to continue</p>
-      <input type="password" id="gate-pass" class="gate-input" placeholder="Access Code" autocomplete="off"/>
-      <div class="gate-error" id="gate-error" style="display:none;color:#FCA5A5;font-size:12px;margin-top:8px;font-weight:600">Wrong access code — try again.</div>
-      <button class="gate-btn" onclick="checkAccess()">Access Portal</button>
-    </div>
-    <div class="gate-footer">ProjX Australia &mdash; Confidential &amp; Not For Distribution</div>
-  </div>
-</div>
-
-<!-- ── App ── -->
-<div id="app">
+<!-- ── App (public — no auth gate) ── -->
+<div id="app" class="visible">
 
   <!-- Top Bar -->
   <div class="top-bar">
     <div class="top-bar-left">
       <div class="top-logo" onclick="goHome()">PX</div>
       <div>
-        <div class="top-title">House &amp; Land Design Portal <span>— V2.3</span></div>
+        <div class="top-title">Inquire About a Lot <span>— ProjX Projects</span></div>
       </div>
     </div>
     <div class="top-bar-right">
       <button class="top-home-btn" id="top-home-btn" onclick="goHome()">← Back to Map</button>
-      <div class="confidential-badge">⚠ Consultant Only</div>
     </div>
   </div>
 
@@ -982,74 +844,108 @@ html,body{overflow-x:hidden;max-width:100vw}
   <!-- ══════════════════════════════════════════════ -->
   <div class="view active" id="view-landing" style="flex-direction:column">
 
-    <!-- Map + List Split -->
+    <!-- Map Filter Bar -->
+    <div class="map-filter-bar" id="map-filter-bar">
+      <div class="mfb-group">
+        <span class="mfb-label">Package Price</span>
+        <select class="mfb-select" id="mf-price" onchange="applyMapFilters()">
+          <option value="any">Any Price</option>
+          <option value="0-450">&lt; $450k</option>
+          <option value="450-550">$450k – $550k</option>
+          <option value="550-650">$550k – $650k</option>
+          <option value="650-750">$650k – $750k</option>
+          <option value="750-up">$750k+</option>
+        </select>
+      </div>
+      <div class="mfb-group">
+        <span class="mfb-label">Region</span>
+        <div class="mfb-chips" style="overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch">
+          <button class="mfb-chip active" data-filter="mf-region" data-val="all" onclick="setMapChip(this)">All Regions</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="gold-coast" onclick="setMapChip(this)">Gold Coast</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="logan" onclick="setMapChip(this)">Logan</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="moreton-bay" onclick="setMapChip(this)">Moreton Bay</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="lockyer-valley" onclick="setMapChip(this)">Lockyer Valley</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="scenic-rim" onclick="setMapChip(this)">Scenic Rim</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="sunshine-coast" onclick="setMapChip(this)">Sunshine Coast</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="gympie" onclick="setMapChip(this)">Gympie</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="mackay" onclick="setMapChip(this)">Mackay</button>
+          <button class="mfb-chip" data-filter="mf-region" data-val="northern-nsw" onclick="setMapChip(this)">Northern NSW</button>
+        </div>
+      </div>
+      <div class="mfb-group">
+        <span class="mfb-label">Timeline</span>
+        <div class="mfb-chips">
+          <button class="mfb-chip active" data-filter="mf-timeline" data-val="all" onclick="setMapChip(this)">All</button>
+          <button class="mfb-chip" data-filter="mf-timeline" data-val="ready" onclick="setMapChip(this)">Ready Now</button>
+          <button class="mfb-chip" data-filter="mf-timeline" data-val="coming" onclick="setMapChip(this)">Coming Soon</button>
+        </div>
+      </div>
+      <button class="mfb-clear" id="mfb-clear" onclick="clearMapFilters()" style="display:none">✕ Clear All</button>
+    </div>
+
+    <!-- Map Hero -->
     <div class="map-section">
-      <div class="map-split">
-        <div class="project-list-panel">
-          <div class="project-list-header">
-            <span style="color:#fff">Projects</span>
-            <span id="pl-count"></span>
-          </div>
-          <div id="project-list"></div>
-        </div>
-        <div class="map-pane">
-          <div class="map-filter-bar" id="map-filter-bar">
-            <div class="mfb-group">
-              <span class="mfb-label">Region</span>
-              <div class="mfb-chips" style="overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch">
-                <button class="mfb-chip active" data-filter="mf-region" data-val="all" onclick="setMapChip(this)">All Regions</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="gold-coast" onclick="setMapChip(this)">Gold Coast</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="logan" onclick="setMapChip(this)">Logan</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="moreton-bay" onclick="setMapChip(this)">Moreton Bay</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="lockyer-valley" onclick="setMapChip(this)">Lockyer Valley</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="scenic-rim" onclick="setMapChip(this)">Scenic Rim</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="sunshine-coast" onclick="setMapChip(this)">Sunshine Coast</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="gympie" onclick="setMapChip(this)">Gympie</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="mackay" onclick="setMapChip(this)">Mackay</button>
-                <button class="mfb-chip" data-filter="mf-region" data-val="northern-nsw" onclick="setMapChip(this)">Northern NSW</button>
-              </div>
-            </div>
-            <div class="mfb-group">
-              <span class="mfb-label">Timeline</span>
-              <div class="mfb-chips">
-                <button class="mfb-chip active" data-filter="mf-timeline" data-val="all" onclick="setMapChip(this)">All</button>
-                <button class="mfb-chip" data-filter="mf-timeline" data-val="ready" onclick="setMapChip(this)">Ready Now</button>
-                <button class="mfb-chip" data-filter="mf-timeline" data-val="coming" onclick="setMapChip(this)">Coming Soon</button>
-              </div>
-            </div>
-            <button class="mfb-clear" id="mfb-clear" onclick="clearMapFilters()" style="display:none">✕ Clear All</button>
-          </div>
-          <div class="map-wrap">
-            <div id="map"></div>
-            <div class="map-overlay-header">
-              <h1>ProjX Project Locations</h1>
-              <p>Click a pin or project to explore lots &amp; packages</p>
-            </div>
-          </div>
-        </div>
+      <div id="map"></div>
+      <div class="map-overlay-header">
+        <h1>ProjX Project Locations</h1>
+        <p>Click a pin to explore lots &amp; packages</p>
       </div>
     </div>
 
   </div>
 
   <!-- ══════════════════════════════════════════════ -->
-  <!-- VIEW: LOTS (Confirm-only — design portal)      -->
+  <!-- VIEW: LOTS (Land First)                        -->
   <!-- ══════════════════════════════════════════════ -->
   <div class="view" id="view-lots" style="flex-direction:column">
     <div class="view-content" style="flex:1">
       <button class="back-btn" onclick="goHome()">← Back to Map</button>
       <div class="view-header-row">
         <div class="view-header">
-          <h2 id="lots-header-title">Confirm Your Estate</h2>
-          <p id="lots-header-sub">Available stock in this project — for context only. Your consultant will confirm your specific lot.</p>
+          <h2 id="lots-header-title">Available Lots</h2>
+          <p id="lots-header-sub">Browse the lots in this project — click one to express your interest and we'll get in touch.</p>
         </div>
       </div>
+      <div class="filter-bar">
+        <div class="filter-group">
+          <span class="filter-label">Sort By</span>
+          <select id="lot-sort" onchange="renderLots()">
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="size-asc">Size: Small → Large</option>
+            <option value="size-desc">Size: Large → Small</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Status</span>
+          <select id="lot-status" onchange="renderLots()">
+            <option value="all">All Lots</option>
+            <option value="Available">Available Only</option>
+            <option value="Unreleased">Unreleased Only</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">Max Price</span>
+          <select id="lot-max-price" onchange="renderLots()">
+            <option value="0">Any Price</option>
+            <option value="200000">Under $200k</option>
+            <option value="250000">Under $250k</option>
+            <option value="300000">Under $300k</option>
+            <option value="350000">Under $350k</option>
+            <option value="400000">Under $400k</option>
+            <option value="450000">Under $450k</option>
+            <option value="500000">Under $500k</option>
+          </select>
+        </div>
+        <span class="filter-result-count" id="lot-count-label"></span>
+      </div>
+      <div class="validation-msg" id="err-lots">Please select a lot to continue.</div>
       <div class="lot-grid" id="lot-grid"></div>
     </div>
     <div class="continue-footer">
-      <div class="continue-footer-left" id="lots-footer-info">Estate confirmed — proceed to builders</div>
+      <div class="continue-footer-left" id="lots-footer-info">Select a lot to express interest</div>
       <button class="continue-btn" id="lots-continue-btn" onclick="continueFromLots()">
-        Continue to Builders <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Express Interest in This Lot <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
   </div>
@@ -1066,16 +962,7 @@ html,body{overflow-x:hidden;max-width:100vw}
       </div>
       <div class="builder-max-hint">Select up to <strong>2 builders</strong> — you'll browse their designs next</div>
       <div class="validation-msg" id="err-builders">Please select at least one builder to continue.</div>
-      <div class="builder-grid-wrap" id="builder-grid-wrap">
-        <button class="bp-side-arrow bp-side-prev" id="bp-prev" onclick="changeBuilderPage(-1)" aria-label="Previous builders" style="visibility:hidden">
-          <svg width="22" height="22" viewBox="0 0 16 16" fill="none"><path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="builder-select-grid" id="builder-select-grid"></div>
-        <button class="bp-side-arrow bp-side-next" id="bp-next" onclick="changeBuilderPage(1)" aria-label="Next builders" style="visibility:hidden">
-          <svg width="22" height="22" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-      <div class="bp-dots" id="bp-dots" style="display:none"></div>
+      <div class="builder-select-grid" id="builder-select-grid"></div>
     </div>
     <div class="continue-footer">
       <div class="continue-footer-left" id="builders-footer-info">0/2 builders selected</div>
@@ -1257,38 +1144,29 @@ html,body{overflow-x:hidden;max-width:100vw}
   </div>
 
   <!-- ══════════════════════════════════════════════ -->
-  <!-- VIEW: SUMMARY & EOI                            -->
+  <!-- VIEW: LOT INQUIRY (public projects website)    -->
   <!-- ══════════════════════════════════════════════ -->
-  <div class="view" id="view-summary" style="flex-direction:column">
+  <div class="view" id="view-lot-inquiry" style="flex-direction:column">
     <div class="summary-hero">
       <div class="summary-hero-left">
-        <div class="lbl">Total Indicative Package Price</div>
-        <div class="amount" id="summary-total">—</div>
-        <div class="qualifier">Land + Build + Customisations (indicative)</div>
+        <div class="lbl">Expressing interest in</div>
+        <div class="amount" id="inquiry-hero-name">—</div>
+        <div class="qualifier" id="inquiry-hero-sub"></div>
       </div>
       <div class="summary-hero-right">
-        <div class="proj-name" id="summary-project-name"></div>
-        <div class="proj-sub" id="summary-project-sub"></div>
+        <button class="back-btn" onclick="showView('lots')" style="background:rgba(255,255,255,0.12);color:#fff;border-color:rgba(255,255,255,0.25)">← Back to Lots</button>
       </div>
     </div>
     <div class="summary-grid">
       <div class="summary-card summary-card-full">
         <h4>Lot Details</h4>
-        <div id="summary-lot"></div>
+        <div id="inquiry-lot-details"></div>
       </div>
     </div>
-    <div id="summary-compare-wrap"></div>
     <div class="eoi-section">
       <div class="eoi-form-inner" id="eoi-form-inner">
-        <h3>Expression of Interest</h3>
-        <p class="eoi-sub">Complete the form and your ProjX consultant will be in touch within 1 business day.</p>
-        <div class="eoi-choice-inline" id="eoi-choice-inline" style="display:none">
-          <div class="eoi-choice-label">Which design is this EOI for?</div>
-          <div class="eoi-choice-options">
-            <label class="eoi-choice-opt"><input type="radio" name="eoi-choice" value="a" onchange="setEoiChoice('a')" checked/><span id="eoi-choice-a-label">Design A</span></label>
-            <label class="eoi-choice-opt"><input type="radio" name="eoi-choice" value="b" onchange="setEoiChoice('b')"/><span id="eoi-choice-b-label">Design B</span></label>
-          </div>
-        </div>
+        <h3>Express Interest in This Lot</h3>
+        <p class="eoi-sub">Fill in your details and a ProjX consultant will be in touch within 1 business day to discuss this lot.</p>
         <div class="form-grid">
           <div class="form-field"><label>First Name *</label><input type="text" id="eoi-fname" placeholder="First name"/></div>
           <div class="form-field"><label>Last Name *</label><input type="text" id="eoi-lname" placeholder="Last name"/></div>
@@ -1302,27 +1180,21 @@ html,body{overflow-x:hidden;max-width:100vw}
           </div>
           <div class="form-field"><label>How did you hear about us?</label>
             <select id="eoi-source">
-              <option>Via ProjX Consultant</option><option>Website</option>
-              <option>Social Media</option><option>Referral</option><option>Other</option>
+              <option>Website</option><option>Social Media</option>
+              <option>Referral</option><option>Via ProjX Consultant</option><option>Other</option>
             </select>
           </div>
-          <div class="form-field full"><label>Additional Notes</label><textarea id="eoi-notes" placeholder="Questions or additional requirements?"></textarea></div>
+          <div class="form-field full"><label>Anything we should know? (optional)</label><textarea id="eoi-notes" placeholder="e.g. budget range, build timeline, finance pre-approval status, preferred builder..."></textarea></div>
         </div>
-        <div class="eoi-disclaimer">By submitting this Expression of Interest, you acknowledge all pricing shown is indicative only and subject to change. This EOI does not constitute a binding contract. A ProjX consultant will contact you to discuss formal contracts and final pricing.</div>
+        <div class="eoi-disclaimer">By submitting this Expression of Interest, you acknowledge land pricing shown is indicative only and subject to change. This EOI does not constitute a binding offer. A ProjX consultant will contact you to discuss availability and progress next steps.</div>
         <div class="validation-msg" id="err-eoi">Please fill in all required fields.</div>
-        <button class="btn-submit" onclick="submitEOI()">Submit Expression of Interest →</button>
+        <button class="btn-submit" onclick="submitLotInquiry()">Submit Expression of Interest →</button>
       </div>
       <div class="success-state" id="eoi-success">
         <div class="success-icon">✅</div>
-        <h3>EOI Submitted!</h3>
-        <p id="eoi-success-msg">Your ProjX consultant will be in touch within 1 business day to progress your Expression of Interest.</p>
+        <h3>Inquiry Submitted!</h3>
+        <p id="eoi-success-msg">A ProjX consultant will be in touch within 1 business day to discuss this lot.</p>
         <p style="margin-top:12px;font-size:12px;color:var(--text-xlight)">Reference: <strong id="eoi-ref"></strong></p>
-        <div class="success-summary" id="success-summary"></div>
-        <div class="success-actions">
-          <a class="success-action-btn" id="success-mailto" href="#">📧 Email this summary to me</a>
-          <button class="success-action-btn secondary" onclick="window.print()">🖨 Print / Save PDF</button>
-        </div>
-        <p class="success-email-note">A confirmation email will be sent automatically once backend delivery is wired. Until then, use the buttons above to save your details.</p>
       </div>
     </div>
   </div>
@@ -1429,44 +1301,32 @@ const INCLUSIONS = [
   {id:'luxury', name:'Luxury', desc:'40mm stone, Bosch/Smeg appliances, engineered timber floors, custom cabinetry, smart home pre-wire.', premium:62000}
 ];
 
-// `tier` = minimum inclusions package that bundles this upgrade for free.
-// premium → included with Premium or Luxury; luxury → only with Luxury; null → always optional add-on.
 const UPGRADES = [
-  {id:'stone',    icon:'🪨', name:'Stone Benchtops',     desc:'20mm engineered stone throughout',           price:4500,  tier:'premium'},
-  {id:'ceilings', icon:'📐', name:'2700mm Ceilings',     desc:'Elevated ceiling heights throughout',        price:3800,  tier:'premium'},
-  {id:'flooring', icon:'🪵', name:'Upgraded Flooring',   desc:'Luxury vinyl plank in living areas',         price:6200,  tier:'premium'},
-  {id:'ac',       icon:'❄️', name:'Ducted Air Conditioning', desc:'7-zone ducted reverse-cycle system',     price:12500, tier:'luxury'},
-  {id:'solar',    icon:'☀️', name:'Solar System (6.6kW)',desc:'6.6kW solar + monitoring system',            price:7900,  tier:'luxury'},
-  {id:'butler',   icon:'🍽️', name:"Butler's Pantry",    desc:"Full butler's pantry with sink & storage",   price:11000, tier:'luxury'},
-  {id:'theatre',  icon:'🎬', name:'Theatre Room Setup',  desc:'Acoustic walls, recessed lighting, pre-wire',price:8500,  tier:null},
-  {id:'alfresco', icon:'🌿', name:'Alfresco Extension',  desc:'Extended covered outdoor entertaining area', price:18500, tier:null}
+  {id:'ac', icon:'❄️', name:'Ducted Air Conditioning', desc:'7-zone ducted reverse-cycle system', price:12500},
+  {id:'stone', icon:'🪨', name:'Stone Benchtops', desc:'20mm engineered stone throughout', price:4500},
+  {id:'ceilings', icon:'📐', name:'2700mm Ceilings', desc:'Elevated ceiling heights throughout', price:3800},
+  {id:'flooring', icon:'🪵', name:'Upgraded Flooring', desc:'Luxury vinyl plank in living areas', price:6200},
+  {id:'solar', icon:'☀️', name:'Solar System (6.6kW)', desc:'6.6kW solar + monitoring system', price:7900},
+  {id:'theatre', icon:'🎬', name:'Theatre Room Setup', desc:'Acoustic walls, recessed lighting, pre-wire', price:8500},
+  {id:'butler', icon:'🍽️', name:"Butler's Pantry", desc:"Full butler's pantry with sink & storage", price:11000},
+  {id:'alfresco', icon:'🌿', name:'Alfresco Extension', desc:'Extended covered outdoor entertaining area', price:18500}
 ];
-
-// Returns true if `upgrade` is bundled-in (free) given the selected inclusions tier.
-function isUpgradeBundled(upgrade, inclusionsTier) {
-  if (!upgrade.tier) return false;
-  if (inclusionsTier === 'luxury') return upgrade.tier === 'premium' || upgrade.tier === 'luxury';
-  if (inclusionsTier === 'premium') return upgrade.tier === 'premium';
-  return false;
-}
 
 // ── App State ─────────────────────────────────────────────────────────────────
 const S = {
   path: null,              // 'land' | 'builder'
   project: null,           // selected project object
-  frontage: null,          // buyer's locked-in lot frontage (m), set via frontage-picker
-  lot: null,               // synthetic lot object (mirrors frontage so existing filters keep working)
-  builderPage: 0,          // pagination index for the builder grid (6 per page)
+  lot: null,               // selected lot object
   selectedBuilders: [],    // array of builder ids (land-first)
   selectedBuilderObj: null,// builder object (builder-first, legacy)
-  selectedDesigns: [],     // array of up to 2 design objects (primary, secondary)
+  selectedDesigns: [],     // array of up to 2 design objects (primary, alternate)
   get selectedDesign() { return this.selectedDesigns[0] || null; },
   set selectedDesign(v) { this.selectedDesigns = v ? [v] : []; },
   customisations: [],      // parallel to selectedDesigns: [{facade,inclusions,upgrades}]
   customizeIndex: 0,       // which design is currently being customised
   eoiChoice: 'a',          // 'a' | 'b' — which design the EOI applies to
   designFilter: 'all',
-  designAdv: { storey:'all', minBed:0, minBath:0, maxPrice:Infinity, frontage:0 },
+  designAdv: { storey:'all', minBed:0, minBath:0, maxPrice:Infinity },
   currentView: 'landing'
 };
 
@@ -1482,53 +1342,29 @@ function currentDesign() { return S.selectedDesigns[S.customizeIndex] || null; }
 let leafletMap = null;
 const mapMarkers = {};
 
-// ── Auth ──────────────────────────────────────────────────────────────────────
-function checkAccess() {
-  const inp = document.getElementById('gate-pass');
-  const err = document.getElementById('gate-error');
-  const entered = (inp && inp.value || '').trim().toUpperCase();
-  console.log('[ProjX auth] received:', JSON.stringify(entered), 'match:', entered === 'LV9');
-  if (entered === 'LV9') {
-    if (err) err.style.display = 'none';
-    try { sessionStorage.setItem('portal-auth','1'); } catch (e) { /* private mode */ }
-    const gate = document.getElementById('auth-gate');
-    const app  = document.getElementById('app');
-    if (gate) gate.classList.add('hidden');
-    if (app)  app.classList.add('visible');
-    try { initApp(); } catch (e) { console.error('[ProjX] initApp error after auth:', e); }
-  } else {
-    if (inp) { inp.classList.add('error'); inp.value = ''; setTimeout(()=>inp.classList.remove('error'), 500); }
-    if (err) err.style.display = '';
-  }
-}
-// Wire keyboard + button handlers defensively.
-(function bindAuth(){
-  const inp = document.getElementById('gate-pass');
-  const btn = document.querySelector('#auth-gate .gate-btn');
-  if (inp) inp.addEventListener('keydown', e=>{ if(e.key==='Enter') checkAccess(); });
-  if (btn) btn.addEventListener('click', checkAccess);
-})();
-// Auto-unlock if previously authenticated (best-effort — wrapped so errors don't keep gate visible incorrectly).
-try {
-  if (sessionStorage.getItem('portal-auth')==='1') {
-    document.getElementById('auth-gate').classList.add('hidden');
-    document.getElementById('app').classList.add('visible');
-    initApp();
-  }
-} catch (e) { console.error('[ProjX] auto-unlock error:', e); }
+// ── Public page — no auth required ───────────────────────────────────────────
+// Boot the app immediately on load.
+initApp();
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 function initApp() {
-  // Prefer local logo files (logos/<id>.png). If a file is missing, the <img onerror>
-  // hook on each card falls back to the colored initials block automatically.
-  BUILDERS.forEach(b => { if (!b.logo) b.logo = 'logos/' + b.id + '.png'; });
+  // No builder cards render on this page — just the map + lots + inquiry EOI.
   initMap();
 }
 
 // ── Formatters ────────────────────────────────────────────────────────────────
 function fmt(n) { return '$' + Math.round(n).toLocaleString('en-AU'); }
 
-// Stage label normalisers. Output "Stage 1" or "Stage 1 and 2" — never raw "1 · H&L".
+// Lot name display: strip the estate prefix (e.g. "SOR-008" → "Lot-008") so it reads cleanly
+// regardless of which project the lot is in. Identifier portion (after the dash) is preserved.
+function displayLotName(raw) {
+  if (!raw) return '';
+  const s = String(raw).trim();
+  const m = s.match(/^[A-Za-z]{2,4}[-_\s]+(.+)$/);
+  return m ? 'Lot-' + m[1] : s;
+}
+
+// Stage label normaliser: data may arrive as "1", "Stage 1", "1, 2", "1 & 2" — output clean "Stage 1" / "Stage 1 and 2".
 function formatStageLabel(raw) {
   if (raw === undefined || raw === null || raw === '') return 'Stage 1';
   const s = String(raw).trim();
@@ -1537,17 +1373,6 @@ function formatStageLabel(raw) {
   if (!nums || !nums.length) return 'Stage 1';
   if (nums.length === 1) return 'Stage ' + nums[0];
   return 'Stage ' + nums.slice(0,-1).join(', ') + ' and ' + nums[nums.length-1];
-}
-function formatStageList(stages) {
-  const nums = [];
-  Array.from(stages || []).forEach(s => {
-    const m = String(s||'').match(/\d+/);
-    if (m) nums.push(parseInt(m[0],10));
-  });
-  if (!nums.length) return 'Stage 1';
-  const unique = [...new Set(nums)].sort((a,b)=>a-b);
-  if (unique.length === 1) return 'Stage ' + unique[0];
-  return 'Stage ' + unique.slice(0,-1).join(', ') + ' and ' + unique[unique.length-1];
 }
 
 // ── View Router ───────────────────────────────────────────────────────────────
@@ -1562,11 +1387,10 @@ function showView(viewId) {
 }
 
 function goHome() {
-  S.path = null; S.project = null; S.lot = null; S.frontage = null;
+  S.path = null; S.project = null; S.lot = null;
   S.selectedBuilders = []; S.selectedBuilderObj = null; S.selectedDesigns = [];
   S.customisations = []; S.customizeIndex = 0; S.eoiChoice = 'a';
-  S.designAdv = { storey:'all', minBed:0, minBath:0, maxPrice:Infinity, frontage:0 };
-  S.builderPage = 0;
+  S.designAdv = { storey:'all', minBed:0, minBath:0, maxPrice:Infinity };
   showView('landing');
   if (leafletMap) setTimeout(()=>leafletMap.invalidateSize(), 300);
 }
@@ -1651,53 +1475,25 @@ function initMap() {
   if (pinBounds.length) {
     leafletMap.setView([-25.5, 152.5], 6);
   }
-
-  setTimeout(renderProjectList, 0);
-}
-
-function projectPassesFilters(proj){
-  const lots = ALL_LOTS[proj.id]||[];
-  if(mapFilterState.region!=='all'){
-    const rp=REGION_MAP[mapFilterState.region]||[];
-    if(!rp.includes(proj.id)) return false;
-  }
-  if(mapFilterState.timeline!=='all'){
-    const hasAvail=lots.some(l=>l.availability==='Available');
-    const allUnreleased=lots.length>0&&lots.every(l=>l.availability==='Unreleased');
-    if(mapFilterState.timeline==='ready'&&!hasAvail) return false;
-    if(mapFilterState.timeline==='coming'&&!allUnreleased) return false;
-  }
-  return true;
-}
-
-function renderProjectList(){
-  const container = document.getElementById('project-list');
-  const countEl = document.getElementById('pl-count');
-  if(!container) return;
-  const passing = PROJECTS.filter(p => projectPassesFilters(p));
-  if(!passing.length){
-    container.innerHTML = '<div class="project-list-empty">No projects match these filters.</div>';
-  } else {
-    container.innerHTML = passing.map(proj=>{
-      return `<div class="project-card" onclick="viewProjectLots('${proj.id}')">
-        <div class="pc-emoji">${proj.emoji}</div>
-        <div class="pc-body">
-          <div class="pc-name">${proj.name}</div>
-          <div class="pc-sub">${proj.suburb} · ${proj.region}</div>
-        </div>
-        <div class="pc-arrow">→</div>
-      </div>`;
-    }).join('');
-  }
-  if(countEl) countEl.textContent = passing.length+' of '+PROJECTS.length;
 }
 
 // ── Map Filter Logic ──────────────────────────────────────────────────────────
+const BUILDER_MID_PRICES = {};
+BUILDERS.forEach(b => {
+  const m = b.priceRange.match(/\$(\d+)k/g);
+  if (m && m.length >= 2) {
+    const lo = parseInt(m[0].replace(/[$k]/g,'')) * 1000;
+    const hi = parseInt(m[1].replace(/[$k]/g,'')) * 1000;
+    BUILDER_MID_PRICES[b.id] = (lo + hi) / 2;
+  } else if (m && m.length === 1) {
+    BUILDER_MID_PRICES[b.id] = parseInt(m[0].replace(/[$k]/g,'')) * 1000 + 50000;
+  }
+});
 
 const REGION_MAP = {"scenic-rim": ["oaklandestate"], "lockyer-valley": ["woodchester", "lakeviewestate"], "gold-coast": ["foxshipper", "riverina"], "logan": ["brookdale", "thegables"], "moreton-bay": ["atnineteen", "northpinegolfestate"], "northern-nsw": ["eade", "harvest"], "mackay": ["elio"], "sunshine-coast": ["serenity"], "gympie": ["sorensenrise"]};
 const REGION_BOUNDS = {"scenic-rim": [[-28.069999999999997, 152.89], [-27.91, 153.05]], "lockyer-valley": [[-27.639999999999997, 152.19], [-27.470000000000002, 152.36]], "gold-coast": [[-28.099999999999998, 153.26999999999998], [-27.78, 153.45000000000002]], "logan": [[-27.799999999999997, 152.95999999999998], [-27.590000000000003, 153.28]], "moreton-bay": [[-27.319999999999997, 152.85], [-27.080000000000002, 153.03]], "northern-nsw": [[-28.729999999999997, 153.53], [-28.560000000000002, 153.70000000000002]], "mackay": [[-21.209999999999997, 149.08999999999997], [-21.05, 149.25]], "sunshine-coast": [[-26.93, 152.89], [-26.770000000000003, 153.05]], "gympie": [[-26.279999999999998, 152.57], [-26.12, 152.73000000000002]]};
 
-const mapFilterState = {region:'all',timeline:'all'};
+const mapFilterState = {price:'any',region:'all',timeline:'all'};
 
 function setMapChip(btn){
   const group = btn.getAttribute('data-filter');
@@ -1710,8 +1506,10 @@ function setMapChip(btn){
 }
 
 function applyMapFilters(){
-  const isFiltered = mapFilterState.region!=='all'||mapFilterState.timeline!=='all';
+  mapFilterState.price = document.getElementById('mf-price').value;
+  const isFiltered = mapFilterState.price!=='any'||mapFilterState.region!=='all'||mapFilterState.timeline!=='all';
   document.getElementById('mfb-clear').style.display = isFiltered?'block':'none';
+  document.getElementById('mf-price').classList.toggle('has-val',mapFilterState.price!=='any');
 
   if(mapFilterState.region!=='all'&&REGION_BOUNDS[mapFilterState.region]){
     leafletMap.fitBounds(REGION_BOUNDS[mapFilterState.region],{padding:[60,60],maxZoom:11});
@@ -1719,13 +1517,53 @@ function applyMapFilters(){
     leafletMap.setView([-25.5, 152.5], 6);
   }
 
+  const builderMids = Object.values(BUILDER_MID_PRICES);
+
   PROJECTS.forEach(proj=>{
+    const lots = ALL_LOTS[proj.id]||[];
     const marker = mapMarkers[proj.id];
     if(!marker) return;
-    updateMarkerStyle(proj,marker,projectPassesFilters(proj));
-  });
+    let passes = true;
 
-  renderProjectList();
+    // Price filter: lot_price + any builder midpoint in range
+    if(mapFilterState.price!=='any'){
+      let hasMatch=false;
+      lots.forEach(l=>{
+        if(l.price<=0) return;
+        builderMids.forEach(mid=>{
+          if(priceInRange(l.price+mid,mapFilterState.price)) hasMatch=true;
+        });
+      });
+      if(!hasMatch) passes=false;
+    }
+
+    // Region
+    if(mapFilterState.region!=='all'){
+      const rp=REGION_MAP[mapFilterState.region]||[];
+      if(!rp.includes(proj.id)) passes=false;
+    }
+
+    // Timeline
+    if(mapFilterState.timeline!=='all'){
+      const hasAvail=lots.some(l=>l.availability==='Available');
+      const allUnreleased=lots.length>0&&lots.every(l=>l.availability==='Unreleased');
+      if(mapFilterState.timeline==='ready'&&!hasAvail) passes=false;
+      if(mapFilterState.timeline==='coming'&&!allUnreleased) passes=false;
+    }
+
+    updateMarkerStyle(proj,marker,passes);
+  });
+}
+
+function priceInRange(pkg,range){
+  switch(range){
+    case '0-450':return pkg<450000;
+    case '450-550':return pkg>=450000&&pkg<=550000;
+    case '550-650':return pkg>=550000&&pkg<=650000;
+    case '650-750':return pkg>=650000&&pkg<=750000;
+    case '750-up':return pkg>=750000;
+    default:return true;
+  }
 }
 
 function updateMarkerStyle(proj,marker,active){
@@ -1741,7 +1579,8 @@ function updateMarkerStyle(proj,marker,active){
 }
 
 function clearMapFilters(){
-  mapFilterState.region='all';mapFilterState.timeline='all';
+  mapFilterState.price='any';mapFilterState.region='all';mapFilterState.timeline='all';
+  document.getElementById('mf-price').value='any';
   document.querySelectorAll('.mfb-chip').forEach(c=>{
     const v=c.getAttribute('data-val');
     c.classList.toggle('active',v==='any'||v==='all');
@@ -1789,8 +1628,9 @@ function renderLots(gridId, projectId) {
 
   let lots = (ALL_LOTS[pId] || []).slice();
   // Portal-side filter: strip Monday.com placeholder rows that appear in every board.
-  // Real lots always have a numeric identifier in their name (e.g. RIV-136, SOR-019, "Lot 12").
-  // Placeholders show the project name / "Project Name" / "Forecast" and have no real price.
+  // Real lots have a numeric identifier (RIV-136, SOR-019, "Lot 12"). Placeholders use the
+  // project name itself ("Riverina, Carrara") or generic labels ("Project Name", "Forecast")
+  // and never carry a real price.
   lots = lots.filter(l => {
     const n = (l.name || '').trim();
     if (!n) return false;
@@ -1808,65 +1648,46 @@ function renderLots(gridId, projectId) {
   if (status !== 'all') lots = lots.filter(l=>l.availability===status);
   if (maxPrice > 0) lots = lots.filter(l=>l.price<=maxPrice);
 
-  // Sort is irrelevant for frontage-grouped view (we re-sort by frontage below) — left intact for legacy.
   if (sort==='price-asc') lots.sort((a,b)=>a.price-b.price);
   else if (sort==='price-desc') lots.sort((a,b)=>b.price-a.price);
   else if (sort==='size-asc') lots.sort((a,b)=>a.lot_size-b.lot_size);
   else if (sort==='size-desc') lots.sort((a,b)=>b.lot_size-a.lot_size);
 
-  // Design portal: render FRONTAGE OPTIONS, not individual lots.
-  // Buyer has already EOI'd/contracted their lot — they pick the matching frontage,
-  // which drives downstream builder/design filtering.
-  // "From $X" = cheapest priced lot at that frontage (V1 approximation; median when richer data lands).
-  const proj = PROJECTS.find(p=>p.id===pId);
-  const groups = {};
-  lots.forEach(l => {
-    const f = parseInt(l.frontage,10);
-    if (!f) return;
-    if (!groups[f]) groups[f] = { frontage:f, lots:[], stages:new Set(), prices:[] };
-    groups[f].lots.push(l);
-    if (l.stage) groups[f].stages.add(l.stage);
-    if (l.price && l.price > 0) groups[f].prices.push(l.price);
-  });
-  // Buyer has already secured land — only show frontages with at least one Available lot.
-  // Unreleased/coming-soon frontages aren't useful to someone who's already contracted.
-  const frontageOptions = Object.values(groups)
-    .filter(g => g.lots.some(l => l.availability === 'Available'))
-    .sort((a,b)=>a.frontage-b.frontage);
   const lbl = document.getElementById('lot-count-label');
-  if (lbl) lbl.textContent = frontageOptions.length + ' frontage option' + (frontageOptions.length!==1?'s':'') + ' available in this project';
-  if (!frontageOptions.length) {
-    grid.innerHTML = '<div class="no-results"><div class="icon">📐</div><p>No available stock right now for this project. Your consultant will confirm next steps.</p></div>';
+  if (lbl) lbl.textContent = lots.length + ' lot' + (lots.length!==1?'s':'') + ' shown';
+
+  if (!lots.length) {
+    grid.innerHTML = '<div class="no-results"><div class="icon">🔍</div><p>No lots match your filters.</p></div>';
     return;
   }
-  grid.innerHTML = frontageOptions.map(g => {
-    const availCount = g.lots.filter(l=>l.availability==='Available').length;
-    const isSelected = S.frontage === g.frontage;
-    // Stage label: "Stage 1" or "Stage 1 and 2" when multiple stages exist at this frontage.
-    const stageLbl = formatStageList(g.stages);
-    const minPrice = g.prices.length ? Math.min(...g.prices) : null;
+
+  grid.innerHTML = lots.map(l => {
+    const isSelected = S.lot && S.lot.id === l.id;
+    const proj = PROJECTS.find(p=>p.id===l.project);
+    const showProject = gId === 'design-lots-grid';
     return `
-    <div class="frontage-card ${isSelected?'selected':''}" onclick="selectFrontage(${g.frontage})">
-      <div class="frontage-card-head">
+    <div class="lot-card ${isSelected?'selected':''}" onclick="selectLot('${l.id}','${gId}')">
+      <div class="lot-card-head">
         <div>
-          <div class="frontage-project">${proj?proj.name:''}</div>
-          <div class="frontage-stage">${stageLbl}</div>
+          <div class="lot-name">${displayLotName(l.name)}${showProject && proj ? ' <span style="font-size:11px;color:var(--text-xlight)">· '+proj.name+'</span>':''}</div>
+          <div class="lot-stage">${formatStageLabel(l.stage)}</div>
         </div>
-        ${availCount?`<div class="lot-avail Available">${availCount} avail</div>`:''}
+        <div class="lot-avail ${l.availability}">${l.availability}</div>
       </div>
-      <div class="frontage-value-block">
-        <div class="frontage-value">${g.frontage}m</div>
-        <div class="frontage-label">Frontage</div>
+      <div class="lot-specs">
+        <div class="lot-spec"><div class="sv">${l.lot_size?l.lot_size.toLocaleString():'—'}</div><div class="sl">sqm</div></div>
+        <div class="lot-spec"><div class="sv">${l.frontage}m</div><div class="sl">frontage</div></div>
       </div>
-      ${minPrice ? `<div class="frontage-from-price"><span class="ffp-lbl">From</span><span class="ffp-val">${fmt(minPrice)}</span></div>` : ''}
-      <button class="frontage-select-btn">${isSelected?'✓ Selected':'Select This Frontage'}</button>
+      <div class="lot-price-row">
+        <div class="lot-price">${l.price?fmt(l.price):'POA'}</div>
+        <button class="lot-select-btn">${isSelected?'✓ Selected':'Select'}</button>
+      </div>
     </div>`;
   }).join('');
   updateLotsFooter();
 }
 
 function selectLot(id, gridId) {
-  // Legacy lot-by-id selection — only used by the design-lots-grid (builder-first reverse flow, dead path).
   const pId = S.project ? S.project.id : null;
   let found = null;
   if (gridId === 'design-lots-grid') {
@@ -1879,7 +1700,6 @@ function selectLot(id, gridId) {
     found = lots.find(l=>l.id===id);
   }
   S.lot = found;
-  if (found) S.frontage = found.frontage;
   document.getElementById('err-lots') && document.getElementById('err-lots').classList.remove('visible');
   document.getElementById('err-design-lots') && document.getElementById('err-design-lots').classList.remove('visible');
   renderLots(gridId, gridId==='design-lots-grid' ? null : pId);
@@ -1888,136 +1708,60 @@ function selectLot(id, gridId) {
   updateDesignLotsFooter();
 }
 
-function selectFrontage(frontage) {
-  S.frontage = (S.frontage === frontage) ? null : frontage;
-  if (S.frontage) {
-    // Cheapest priced lot at this frontage in the current project = indicative land value (V1).
-    const pId = S.project ? S.project.id : null;
-    const all = (ALL_LOTS[pId] || []).filter(l => parseInt(l.frontage,10) === S.frontage && l.price && l.price > 0);
-    const minPrice = all.length ? Math.min(...all.map(l=>l.price)) : 0;
-    S.lot = { frontage:S.frontage, name:S.frontage+'m frontage', price:minPrice, _virtual:true };
-  } else {
-    S.lot = null;
-  }
-  renderLots();
-  updateLotsFooter();
-}
-
 function updateLotsFooter() {
   const info = document.getElementById('lots-footer-info');
-  if (!info) return;
-  // Confirm-only flow: lot list is informational. Footer reflects the project, not a lot selection.
-  if (S.project) info.innerHTML = `✓ Estate confirmed: <strong>${S.project.name}</strong>${S.project.suburb?(', '+S.project.suburb):''}`;
-  else info.textContent = 'Estate confirmed — proceed to builders';
+  if (info) info.innerHTML = S.lot ? `✓ <strong>${displayLotName(S.lot.name)}</strong> — ${fmt(S.lot.price)} — ${S.lot.lot_size}m² · ${S.lot.frontage}m frontage` : 'Select a lot to continue';
 }
 
 function continueFromLots() {
-  S.builderPage = 0;
-  renderBuilderSelectGrid();
-  const sub = document.getElementById('lot-builders-sub');
-  if (sub) {
-    sub.textContent = S.project
-      ? `Browsing builders for ${S.project.name}. Select up to 2 to explore their designs. Use the frontage chips on the Designs page to filter to your lot.`
-      : 'Select up to 2 builders to explore their designs.';
-  }
-  showView('lot-builders');
+  if (!S.lot) { document.getElementById('err-lots').classList.add('visible'); return; }
+  renderLotInquiry();
+  showView('lot-inquiry');
+}
+
+function renderLotInquiry() {
+  const lot = S.lot;
+  if (!lot) return;
+  const proj = S.project || PROJECTS.find(p=>p.id===lot.project);
+  // Hero header
+  const heroName = document.getElementById('inquiry-hero-name');
+  const heroSub  = document.getElementById('inquiry-hero-sub');
+  if (heroName) heroName.textContent = displayLotName(lot.name) + (proj?` · ${proj.name}`:'');
+  if (heroSub)  heroSub.textContent  = proj ? `${proj.suburb}, ${proj.region}` : '';
+  // Lot details card
+  const det = document.getElementById('inquiry-lot-details');
+  if (det) det.innerHTML = `
+    <div class="summary-row"><span class="s-lbl">Project</span><span class="s-val">${proj?proj.name:'—'}</span></div>
+    <div class="summary-row"><span class="s-lbl">Lot</span><span class="s-val">${displayLotName(lot.name)}</span></div>
+    <div class="summary-row"><span class="s-lbl">Stage</span><span class="s-val">${formatStageLabel(lot.stage)}</span></div>
+    <div class="summary-row"><span class="s-lbl">Land Size</span><span class="s-val">${lot.lot_size?lot.lot_size.toLocaleString()+'m²':'—'}</span></div>
+    <div class="summary-row"><span class="s-lbl">Frontage</span><span class="s-val">${lot.frontage}m</span></div>
+    <div class="summary-row"><span class="s-lbl">Land Price</span><span class="s-val">${lot.price?fmt(lot.price):'POA'}</span></div>
+    <div class="summary-row"><span class="s-lbl">Status</span><span class="s-val">${lot.availability}</span></div>`;
 }
 
 function builderHasCompatibleDesign(builderId, frontage) {
   return DESIGNS.some(d => d.builder === builderId && d.minFrontage <= frontage);
 }
 
-// Ascending tier order so the price ladder reads naturally (Cooper's call).
-const BUILDER_TIER_ORDER = ['entry','entry-mid','mid','mid-premium','premium'];
-function tierRank(b) {
-  const idx = BUILDER_TIER_ORDER.indexOf(b.tierKey);
-  return idx === -1 ? 99 : idx;
-}
-
-const BUILDERS_PER_PAGE = 6;
-
-function changeBuilderPage(delta) {
-  S.builderPage = (S.builderPage || 0) + delta;
-  if (S.builderPage < 0) S.builderPage = 0;
-  renderBuilderSelectGrid();
-  const grid = document.getElementById('builder-select-grid');
-  if (grid) grid.scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-function goToBuilderPage(idx) {
-  S.builderPage = idx;
-  renderBuilderSelectGrid();
-}
-
 function renderBuilderSelectGrid() {
   const grid = document.getElementById('builder-select-grid');
   const frontage = S.lot ? S.lot.frontage : 99;
-  // Show ALL partner builders. Eligible (have a design fitting the lot frontage) first by tier asc;
-  // non-eligible after, also tier asc — rendered visibly with a "No designs fit your lot" badge
-  // and a disabled Select button (info-only). Pagination still applies across the full roster.
-  const allBuilders = BUILDERS
-    .map(b => Object.assign({}, b, { _eligible: builderHasCompatibleDesign(b.id, frontage) }))
-    .sort((a,b) => {
-      if (a._eligible !== b._eligible) return a._eligible ? -1 : 1;
-      return tierRank(a) - tierRank(b);
-    });
+  // Tunnel-vision: only show builders with at least one design that fits the lot
+  const eligibleBuilders = BUILDERS.filter(b => builderHasCompatibleDesign(b.id, frontage));
 
-  if (!allBuilders.length) {
+  if (!eligibleBuilders.length) {
     grid.innerHTML = '<div class="no-results"><div class="icon">🏗️</div><p>No partner builders currently have a design that fits this lot. Your consultant will discuss custom options.</p></div>';
-    const prev = document.getElementById('bp-prev');
-    const next = document.getElementById('bp-next');
-    const dots = document.getElementById('bp-dots');
-    if (prev) prev.style.visibility = 'hidden';
-    if (next) next.style.visibility = 'hidden';
-    if (dots) dots.style.display = 'none';
     updateBuildersFooter();
     return;
   }
 
-  // Pagination: 6 builders per page. Clamp builderPage to valid range.
-  const totalPages = Math.max(1, Math.ceil(allBuilders.length / BUILDERS_PER_PAGE));
-  if (S.builderPage >= totalPages) S.builderPage = totalPages - 1;
-  if (S.builderPage < 0) S.builderPage = 0;
-  const start = S.builderPage * BUILDERS_PER_PAGE;
-  const pageBuilders = allBuilders.slice(start, start + BUILDERS_PER_PAGE);
-
-  // Arrows visible ONLY in the direction the buyer can actually go.
-  // - On page 1: only the right (next) arrow shows.
-  // - On the last page: only the left (prev) arrow shows.
-  // - On middle pages: both show.
-  // - Single page total: neither shows.
-  const prev = document.getElementById('bp-prev');
-  const next = document.getElementById('bp-next');
-  const dots = document.getElementById('bp-dots');
-  const showPrev = totalPages > 1 && S.builderPage > 0;
-  const showNext = totalPages > 1 && S.builderPage < totalPages - 1;
-  if (prev) prev.style.visibility = showPrev ? '' : 'hidden';
-  if (next) next.style.visibility = showNext ? '' : 'hidden';
-  if (dots) {
-    if (totalPages > 1) {
-      dots.style.display = '';
-      let dotsHtml = '';
-      for (let i = 0; i < totalPages; i++) {
-        dotsHtml += `<button class="bp-dot ${i===S.builderPage?'active':''}" onclick="goToBuilderPage(${i})" aria-label="Page ${i+1}"></button>`;
-      }
-      dots.innerHTML = dotsHtml;
-    } else {
-      dots.style.display = 'none';
-    }
-  }
-
-  grid.innerHTML = pageBuilders.map(b => {
+  grid.innerHTML = eligibleBuilders.map(b => {
     const isSelected = S.selectedBuilders.includes(b.id);
     const isMaxed = !isSelected && S.selectedBuilders.length >= 2;
-    const eligible = b._eligible;
     const fitCount = DESIGNS.filter(d=>d.builder===b.id && d.minFrontage<=frontage).length;
-    const selectLabel = !eligible ? 'No designs fit your lot' : (isSelected?'✓ Selected':(isMaxed?'Max 2 reached':'Select Builder'));
-    const selectHandler = eligible ? `onclick=\"event.stopPropagation();toggleBuilder('${b.id}')\"` : '';
-    const fitLine = eligible
-      ? `${fitCount} design${fitCount!==1?'s':''} fit your lot`
-      : `<span class=\"bsc-no-fit\">No designs fit your ${frontage<99?frontage+'m':'lot'} frontage</span>`;
     return `
-    <div class="builder-select-card flip-card ${isSelected?'selected':''} ${isMaxed?'maxed':''} ${!eligible?'ineligible':''}">
+    <div class="builder-select-card flip-card ${isSelected?'selected':''} ${isMaxed?'maxed':''}">
       <div class="bsc-flip-inner">
         <div class="bsc-face bsc-front" onclick="flipBuilderCard(this)">
           <div class="bsc-check">${isSelected?'<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</div>
@@ -2025,11 +1769,8 @@ function renderBuilderSelectGrid() {
           <div class="bsc-name">${b.name}</div>
           <div class="bsc-tagline">${b.tagline}</div>
           <div class="bsc-tier tier-${b.tierKey}">${b.tier}</div>
-          <div class="bsc-fit-count">${fitLine}</div>
-          <div class="bsc-front-actions">
-            <button class="bsc-select-btn bsc-select-btn-front" ${selectHandler} ${!eligible?'disabled':''}>${selectLabel}</button>
-            <div class="bsc-flip-hint">Tap card for details ↻</div>
-          </div>
+          <div class="bsc-fit-count">${fitCount} design${fitCount!==1?'s':''} fit your lot</div>
+          <div class="bsc-flip-hint">Tap for details ↻</div>
         </div>
         <div class="bsc-face bsc-back" onclick="flipBuilderCard(this)">
           <div class="bsc-back-name">${b.name}</div>
@@ -2037,9 +1778,9 @@ function renderBuilderSelectGrid() {
           <div class="bsc-attrs">
             <div class="bsc-attr"><div class="bsc-attr-icon">💰</div><span class="bsc-attr-lbl">Build Price</span><span class="bsc-attr-val">${b.priceRange}</span></div>
             <div class="bsc-attr"><div class="bsc-attr-icon">🏗️</div><span class="bsc-attr-lbl">Build Time</span><span class="bsc-attr-val">${b.buildTime}</span></div>
-            <div class="bsc-attr"><div class="bsc-attr-icon">📐</div><span class="bsc-attr-lbl">Fits Lot</span><span class="bsc-attr-val">${eligible?fitCount+' design'+(fitCount!==1?'s':''):'None'}</span></div>
+            <div class="bsc-attr"><div class="bsc-attr-icon">📐</div><span class="bsc-attr-lbl">Fits Lot</span><span class="bsc-attr-val">${fitCount} design${fitCount!==1?'s':''}</span></div>
           </div>
-          <button class="bsc-select-btn" ${selectHandler} ${!eligible?'disabled':''}>${selectLabel}</button>
+          <button class="bsc-select-btn" onclick="event.stopPropagation();toggleBuilder('${b.id}')">${isSelected?'✓ Selected':(isMaxed?'Max 2 reached':'Select Builder')}</button>
         </div>
       </div>
     </div>`;
@@ -2053,9 +1794,6 @@ function flipBuilderCard(face) {
 }
 
 function toggleBuilder(id) {
-  // Defensive: block selection of non-eligible builders (no compatible design for the lot frontage).
-  const frontage = S.lot ? S.lot.frontage : 99;
-  if (!S.selectedBuilders.includes(id) && !builderHasCompatibleDesign(id, frontage)) return;
   if (S.selectedBuilders.includes(id)) {
     S.selectedBuilders = S.selectedBuilders.filter(b=>b!==id);
   } else if (S.selectedBuilders.length < 2) {
@@ -2107,11 +1845,8 @@ function storeyOf(d) { return d.sqm < 250 ? 'single' : 'double'; }
 
 function renderDesignGrid(designs, gridId, frontage, filter, countId) {
   let filtered = designs.slice();
-  // Frontage override: filter chip "10m / 12m / ..." trumps lot frontage; "Use Lot" (0) keeps lot
-  const adv0 = S.designAdv || {};
-  const effFrontage = (adv0.frontage && adv0.frontage > 0) ? adv0.frontage : frontage;
-  // Hard-filter by effective frontage (no incompatible designs shown)
-  if (effFrontage < 99) filtered = filtered.filter(d=>d.minFrontage<=effFrontage);
+  // Hard-filter by lot frontage (no incompatible designs shown post-lot-select)
+  if (frontage < 99) filtered = filtered.filter(d=>d.minFrontage<=frontage);
   // Ausbuild-style advanced filters
   const adv = S.designAdv || { storey:'all', minBed:0, minBath:0, maxPrice:Infinity };
   if (adv.storey && adv.storey !== 'all') filtered = filtered.filter(d=>storeyOf(d)===adv.storey);
@@ -2133,14 +1868,14 @@ function renderDesignGrid(designs, gridId, frontage, filter, countId) {
       {icon:'🛏',val:d.bed+' Bed'},{icon:'🚿',val:d.bath+' Bath'},{icon:'🚗',val:d.car+' Car'},
       ...(d.study?[{icon:'📚',val:'Study'}]:[])
     ];
-    const btnLabel = isSelected ? (selIdx===0?'✓ Primary':'✓ Secondary') : (S.selectedDesigns && S.selectedDesigns.length>=2?'Shortlist Full':'Add to Shortlist');
+    const btnLabel = isSelected ? (selIdx===0?'✓ Primary':'✓ Alternate') : (S.selectedDesigns && S.selectedDesigns.length>=2?'Shortlist Full':'Add to Shortlist');
     const isMaxed = !isSelected && S.selectedDesigns && S.selectedDesigns.length>=2;
     return `
     <div class="design-card ${isSelected?'selected':''} ${isMaxed?'maxed':''}" onclick="selectDesign('${d.id}','${gridId}')">
       <div class="design-thumb">
         <div class="design-thumb-bg" style="background:linear-gradient(135deg,${builder.color}18 0%,${builder.color}35 100%)"></div>
         <div class="design-thumb-icon">🏠</div>
-        ${isSelected?`<span class="design-compat-badge fit">${selIdx===0?'Primary':'Secondary'}</span>`:''}
+        ${isSelected?`<span class="design-compat-badge fit">${selIdx===0?'Primary':'Alternate'}</span>`:''}
         <div class="design-thumb-overlay">
           <div class="design-thumb-name">${d.name}</div>
           <div class="design-thumb-builder">${builder.name} · ${d.highlight}</div>
@@ -2170,7 +1905,7 @@ function setAdvFilter(btn) {
   const group = btn.closest('.afr-group');
   if (group) group.querySelectorAll('.afr-chip').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
-  if (!S.designAdv) S.designAdv = { storey:'all', minBed:0, minBath:0, maxPrice:Infinity, frontage:0 };
+  if (!S.designAdv) S.designAdv = { storey:'all', minBed:0, minBath:0, maxPrice:Infinity };
   if (key === 'storey') S.designAdv.storey = val;
   else S.designAdv[key] = parseInt(val,10) || 0;
   rerenderActiveDesigns();
@@ -2310,7 +2045,7 @@ function renderDesignLots() {
       <div class="lot-card-head">
         <div>
           <div class="lot-name">${l.name}</div>
-          <div class="lot-stage">${proj?proj.name+' · ':''} ${l.stage||'Stage 1'}</div>
+          <div class="lot-stage">${proj?proj.name+' · ':''}${formatStageLabel(l.stage)}</div>
         </div>
         <div class="lot-avail ${l.availability}">${l.availability}</div>
       </div>
@@ -2351,7 +2086,7 @@ function renderCustomize() {
     : `Choose your facade, inclusions package, and optional upgrades.`;
   document.getElementById('pricing-preview').innerHTML =
     `<div class="pricing-design-name">${d.name}</div><div class="pricing-design-sub">${b.name} · ${d.bed}bd ${d.bath}ba ${d.car}car · ${d.sqm}m²</div>`;
-  document.getElementById('facade-grid').innerHTML = FACADES.slice().sort((a,b)=>a.premium-b.premium).map(f=>`
+  document.getElementById('facade-grid').innerHTML = FACADES.map(f=>`
     <div class="facade-option ${cfg.facade===f.id?'selected':''}" onclick="selectFacade('${f.id}')">
       <div class="facade-thumb"><div class="facade-thumb-bg" style="background:${f.color}22"></div><div class="facade-thumb-icon">🏠</div></div>
       <div class="facade-name">${f.name}</div>
@@ -2363,21 +2098,13 @@ function renderCustomize() {
       <div class="incl-desc">${i.desc}</div>
       <div class="incl-price">${i.premium===0?'Included':'+'+fmt(i.premium)}</div>
     </div>`).join('');
-  document.getElementById('upgrades-list').innerHTML = UPGRADES.slice().sort((a,b)=>a.price-b.price).map(u=>{
-    const bundled = isUpgradeBundled(u, cfg.inclusions);
-    const ticked = bundled || cfg.upgrades.includes(u.id);
-    const handler = bundled ? '' : `onclick="toggleUpgrade('${u.id}')"`;
-    const priceLbl = bundled
-      ? `<span class="upgrade-included">Included with ${cfg.inclusions.charAt(0).toUpperCase()+cfg.inclusions.slice(1)}</span>`
-      : `+${fmt(u.price)}`;
-    return `
-    <div class="upgrade-item ${ticked?'selected':''} ${bundled?'bundled':''}" ${handler}>
-      <div class="upgrade-check">${ticked?'<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</div>
+  document.getElementById('upgrades-list').innerHTML = UPGRADES.map(u=>`
+    <div class="upgrade-item ${cfg.upgrades.includes(u.id)?'selected':''}" onclick="toggleUpgrade('${u.id}')">
+      <div class="upgrade-check">${cfg.upgrades.includes(u.id)?'<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</div>
       <div class="upgrade-icon">${u.icon}</div>
       <div class="upgrade-info"><div class="upgrade-name">${u.name}</div><div class="upgrade-desc">${u.desc}</div></div>
-      <div class="upgrade-price">${priceLbl}</div>
-    </div>`;
-  }).join('');
+      <div class="upgrade-price">+${fmt(u.price)}</div>
+    </div>`).join('');
   // Update continue button label based on flow position
   const contBtn = document.querySelector('#view-customize .continue-btn');
   if (contBtn) {
@@ -2402,8 +2129,7 @@ function updatePricing() {
   const cfg = currentConfig();
   const facadeObj = FACADES.find(f=>f.id===cfg.facade);
   const inclObj = INCLUSIONS.find(i=>i.id===cfg.inclusions);
-  // Skip bundled upgrades — they're included in the inclusions package, no separate cost
-  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); if (!u || isUpgradeBundled(u,cfg.inclusions)) return sum; return sum+u.price; },0);
+  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); return sum+(u?u.price:0); },0);
   const landPrice = lot ? lot.price : 0;
   const facadePremium = facadeObj ? facadeObj.premium : 0;
   const inclPremium = inclObj ? inclObj.premium : 0;
@@ -2423,7 +2149,7 @@ function getTotalPriceFor(idx) {
   const cfg = ensureCustomisation(idx);
   const facadeObj = FACADES.find(f=>f.id===cfg.facade);
   const inclObj = INCLUSIONS.find(i=>i.id===cfg.inclusions);
-  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); if (!u || isUpgradeBundled(u,cfg.inclusions)) return sum; return sum+u.price; },0);
+  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); return sum+(u?u.price:0); },0);
   return (S.lot?S.lot.price:0)+d.basePrice+(facadeObj?facadeObj.premium:0)+(inclObj?inclObj.premium:0)+upgradeTotal;
 }
 
@@ -2457,12 +2183,12 @@ function renderDesignColumn(idx) {
   const cfg = ensureCustomisation(idx);
   const facadeObj = FACADES.find(f=>f.id===cfg.facade);
   const inclObj = INCLUSIONS.find(i=>i.id===cfg.inclusions);
-  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); if (!u || isUpgradeBundled(u,cfg.inclusions)) return sum; return sum+u.price; },0);
+  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); return sum+(u?u.price:0); },0);
   const lot = S.lot;
   const facadePremium = facadeObj ? facadeObj.premium : 0;
   const inclPremium = inclObj ? inclObj.premium : 0;
   const total = getTotalPriceFor(idx);
-  const upgradeRows = cfg.upgrades.map(uid=>{ const u=UPGRADES.find(u=>u.id===uid); if (!u) return ''; const isBundled = isUpgradeBundled(u, cfg.inclusions); return `<div class="summary-row"><span class="s-lbl">${u.name}</span><span class="s-val">${isBundled?'Included':'+'+fmt(u.price)}</span></div>`; }).join('');
+  const upgradeRows = cfg.upgrades.map(uid=>{ const u=UPGRADES.find(u=>u.id===uid); return u?`<div class="summary-row"><span class="s-lbl">${u.name}</span><span class="s-val">+${fmt(u.price)}</span></div>`:''; }).join('');
   const label = idx === 0 ? 'Design A' : 'Design B';
   return `
     <div class="compare-col">
@@ -2501,39 +2227,18 @@ function renderSummary() {
   const proj = S.project || PROJECTS.find(p=>p.id===(lot?lot.project:null));
   const designs = S.selectedDesigns || [];
   const isCompare = designs.length > 1;
-  // Hero banner total: lowest of the two designs when comparing, so the headline is the true "from" price
-  const heroTotal = isCompare ? Math.min(getTotalPriceFor(0), getTotalPriceFor(1)) : getTotalPriceFor(0);
+  // Hero banner total: primary design's total (or max of the two if compare)
+  const heroTotal = isCompare ? Math.max(getTotalPriceFor(0), getTotalPriceFor(1)) : getTotalPriceFor(0);
   document.getElementById('summary-total').textContent = 'From ' + fmt(heroTotal);
   document.getElementById('summary-project-name').textContent = proj ? proj.name : '';
   document.getElementById('summary-project-sub').textContent = proj ? proj.suburb + ', QLD' : '';
-  // Lot Details — clean layout with header, icon-decorated facts, generous spacing.
-  // Skip zero/empty data rows (avoids ugly "Land Size 0m²" lines when Monday data is incomplete).
-  if (lot) {
-    const facts = [];
-    if (lot.frontage)                       facts.push({icon:'📐', lbl:'Frontage',   val:lot.frontage+'m'});
-    if (lot.lot_size && lot.lot_size > 0)   facts.push({icon:'🟦', lbl:'Land Size',  val:lot.lot_size.toLocaleString()+'m²'});
-    if (lot.price && lot.price > 0)         facts.push({icon:'💰', lbl:'Land Price', val:'From '+fmt(lot.price)});
-    if (lot.stage)                          facts.push({icon:'🏷️', lbl:'Stage',     val:formatStageLabel(lot.stage)});
-    if (lot.availability)                   facts.push({icon:'✅', lbl:'Status',     val:lot.availability});
-    const displayName = lot._virtual ? `${lot.frontage}m Frontage` : (lot.name || '');
-    document.getElementById('summary-lot').innerHTML = `
-      <div class="lot-summary-head">
-        <div class="lot-summary-lotid">${displayName}</div>
-        ${proj ? `<div class="lot-summary-proj">${proj.name}${proj.suburb?` · ${proj.suburb}${proj.region?', '+proj.region:''}`:''}</div>` : ''}
-      </div>
-      <div class="lot-summary-grid">
-        ${facts.map(f => `
-          <div class="lot-summary-fact">
-            <div class="lsf-icon">${f.icon}</div>
-            <div class="lsf-text">
-              <div class="lsf-lbl">${f.lbl}</div>
-              <div class="lsf-val">${f.val}</div>
-            </div>
-          </div>`).join('')}
-      </div>`;
-  } else {
-    document.getElementById('summary-lot').innerHTML = '<p style="color:var(--text-light);font-size:13px">Lot details pending — your consultant will confirm.</p>';
-  }
+  document.getElementById('summary-lot').innerHTML = lot ? `
+    <div class="summary-row"><span class="s-lbl">Lot</span><span class="s-val">${lot.name}</span></div>
+    <div class="summary-row"><span class="s-lbl">Project</span><span class="s-val">${proj?proj.name:''}</span></div>
+    <div class="summary-row"><span class="s-lbl">Land Size</span><span class="s-val">${lot.lot_size}m²</span></div>
+    <div class="summary-row"><span class="s-lbl">Frontage</span><span class="s-val">${lot.frontage}m</span></div>
+    <div class="summary-row"><span class="s-lbl">Land Price</span><span class="s-val">${fmt(lot.price)}</span></div>
+    <div class="summary-row"><span class="s-lbl">Status</span><span class="s-val">${lot.availability}</span></div>` : '<p>No lot selected</p>';
   // Compare panel (1 or 2 cols)
   const wrap = document.getElementById('summary-compare-wrap');
   if (wrap) {
@@ -2552,97 +2257,22 @@ function renderSummary() {
 
 function setEoiChoice(v) { S.eoiChoice = v; }
 
-function submitEOI() {
+function submitLotInquiry() {
   const fname=document.getElementById('eoi-fname').value.trim();
   const lname=document.getElementById('eoi-lname').value.trim();
   const email=document.getElementById('eoi-email').value.trim();
   const phone=document.getElementById('eoi-phone').value.trim();
   if (!fname||!lname||!email||!phone) { document.getElementById('err-eoi').classList.add('visible'); return; }
   document.getElementById('err-eoi').classList.remove('visible');
-  const ref='EOI-'+Date.now().toString(36).toUpperCase();
+  const ref='LOT-'+Date.now().toString(36).toUpperCase();
   document.getElementById('eoi-ref').textContent=ref;
-  // Submission payload uses ONLY the chosen design — the unchosen shortlist entry is discarded here.
-  const chosenIdx = (S.selectedDesigns.length > 1 && S.eoiChoice === 'b') ? 1 : 0;
-  const d = S.selectedDesigns[chosenIdx] || null;
-  const cfg = ensureCustomisation(chosenIdx);
-  S.submittedPayload = { ref, design: d, config: cfg, lot: S.lot, project: S.project, contact: {fname,lname,email,phone} };
-
-  // Headline message
-  const msgEl = document.getElementById('eoi-success-msg');
-  if (msgEl && d) msgEl.innerHTML = `Your EOI is locked in for <strong>${d.name}</strong>. Your ProjX consultant will be in touch within 1 business day.`;
-
-  // Build summary
-  renderSuccessSummary();
-
-  // mailto: fallback
-  const mail = document.getElementById('success-mailto');
-  if (mail) {
-    const body = buildEoiEmailBody();
-    mail.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Your ProjX EOI — '+ref)}&body=${encodeURIComponent(body)}`;
-  }
-
+  const lot = S.lot;
+  const proj = S.project || (lot ? PROJECTS.find(p=>p.id===lot.project) : null);
+  const msg = document.getElementById('eoi-success-msg');
+  if (msg && lot) msg.innerHTML = `Thanks ${fname} — your interest in <strong>${displayLotName(lot.name)}</strong>${proj?` at ${proj.name}`:''} is logged. A ProjX consultant will be in touch within 1 business day.`;
   document.getElementById('eoi-form-inner').classList.add('hidden');
   document.getElementById('eoi-success').classList.add('visible');
-}
-
-function renderSuccessSummary() {
-  const p = S.submittedPayload; if (!p || !p.design) return;
-  const b = BUILDERS.find(bl=>bl.id===p.design.builder);
-  const lot = p.lot;
-  const proj = p.project;
-  const cfg = p.config;
-  const facadeObj = FACADES.find(f=>f.id===cfg.facade);
-  const inclObj = INCLUSIONS.find(i=>i.id===cfg.inclusions);
-  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); if (!u || isUpgradeBundled(u,cfg.inclusions)) return sum; return sum+u.price; },0);
-  const facadePremium = facadeObj?facadeObj.premium:0;
-  const inclPremium = inclObj?inclObj.premium:0;
-  const total = (lot?lot.price:0) + p.design.basePrice + facadePremium + inclPremium + upgradeTotal;
-  const wrap = document.getElementById('success-summary');
-  if (!wrap) return;
-  wrap.innerHTML = `
-    <h4>Submission Summary</h4>
-    <div class="ss-row"><span class="ss-lbl">Project</span><span class="ss-val">${proj?proj.name:'—'}${proj?(', '+proj.suburb):''}</span></div>
-    ${lot?`<div class="ss-row"><span class="ss-lbl">Lot</span><span class="ss-val">${lot._virtual ? lot.frontage+'m frontage' : (lot.name + (lot.lot_size?' · '+lot.lot_size+'m²':'') + ' · '+lot.frontage+'m frontage')}</span></div>`:''}
-    <div class="ss-row"><span class="ss-lbl">Builder</span><span class="ss-val">${b?b.name:''}</span></div>
-    <div class="ss-row"><span class="ss-lbl">Design</span><span class="ss-val">${p.design.name} · ${p.design.bed}bd ${p.design.bath}ba ${p.design.car}car · ${p.design.sqm}m²</span></div>
-    <div class="ss-row"><span class="ss-lbl">Facade</span><span class="ss-val">${facadeObj?facadeObj.name:''}${facadePremium?' (+'+fmt(facadePremium)+')':''}</span></div>
-    <div class="ss-row"><span class="ss-lbl">Inclusions</span><span class="ss-val">${inclObj?inclObj.name:''}${inclPremium?' (+'+fmt(inclPremium)+')':''}</span></div>
-    <div class="ss-row"><span class="ss-lbl">Optional Upgrades</span><span class="ss-val">${upgradeTotal?'+'+fmt(upgradeTotal):'None'}</span></div>
-    <div class="ss-row ss-total"><span class="ss-lbl">Total Indicative Package — From</span><span class="ss-val">${fmt(total)}</span></div>`;
-}
-
-function buildEoiEmailBody() {
-  const p = S.submittedPayload; if (!p || !p.design) return '';
-  const b = BUILDERS.find(bl=>bl.id===p.design.builder);
-  const lot = p.lot; const proj = p.project; const cfg = p.config;
-  const facadeObj = FACADES.find(f=>f.id===cfg.facade);
-  const inclObj = INCLUSIONS.find(i=>i.id===cfg.inclusions);
-  const upgradeTotal = cfg.upgrades.reduce((sum,uid)=>{ const u=UPGRADES.find(u=>u.id===uid); if (!u || isUpgradeBundled(u,cfg.inclusions)) return sum; return sum+u.price; },0);
-  const facadePremium = facadeObj?facadeObj.premium:0;
-  const inclPremium = inclObj?inclObj.premium:0;
-  const total = (lot?lot.price:0) + p.design.basePrice + facadePremium + inclPremium + upgradeTotal;
-  return [
-    `ProjX Expression of Interest — ${p.ref}`,
-    ``,
-    `Hi ${p.contact.fname},`,
-    ``,
-    `Here's a copy of the EOI you submitted via the ProjX design portal.`,
-    ``,
-    `── Submission ──`,
-    `Project:    ${proj?proj.name:'—'}${proj?(', '+proj.suburb):''}`,
-    lot?`Lot:        ${lot._virtual ? lot.frontage+'m frontage · '+fmt(lot.price) : lot.name + (lot.lot_size?' · '+lot.lot_size+'m²':'') + ' · '+lot.frontage+'m frontage · '+fmt(lot.price)}`:'',
-    `Builder:    ${b?b.name:''}`,
-    `Design:     ${p.design.name} (${p.design.bed}bd ${p.design.bath}ba ${p.design.car}car · ${p.design.sqm}m²) — From ${fmt(p.design.basePrice)}`,
-    `Facade:     ${facadeObj?facadeObj.name:''}${facadePremium?' (+'+fmt(facadePremium)+')':''}`,
-    `Inclusions: ${inclObj?inclObj.name:''}${inclPremium?' (+'+fmt(inclPremium)+')':''}`,
-    `Upgrades:   ${upgradeTotal?'+'+fmt(upgradeTotal):'None'}`,
-    ``,
-    `Total Indicative Package — From ${fmt(total)}`,
-    ``,
-    `All pricing is indicative. Your ProjX consultant will be in touch within 1 business day to progress this.`,
-    ``,
-    `— ProjX`
-  ].filter(Boolean).join('\n');
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 </script>
 </body>
