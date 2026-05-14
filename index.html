@@ -1729,11 +1729,6 @@ function renderProjectList(){
   if(!container) return;
   let visible = 0;
   container.innerHTML = PROJECTS.map(proj=>{
-    const lots = ALL_LOTS[proj.id]||[];
-    const avail = lots.filter(l=>l.availability==='Available').length;
-    const prices = lots.filter(l=>l.price>0).map(l=>l.price);
-    const minP = prices.length ? Math.min(...prices) : 0;
-    const priceStr = minP ? 'Land from <strong>'+fmt(minP)+'</strong>' : 'POA';
     const passes = projectPassesFilters(proj);
     if(passes) visible++;
     const onclick = passes ? `viewProjectLots('${proj.id}')` : '';
@@ -1742,10 +1737,6 @@ function renderProjectList(){
       <div class="pc-body">
         <div class="pc-name">${proj.name}</div>
         <div class="pc-sub">${proj.suburb} · ${proj.region}</div>
-        <div class="pc-meta">
-          <span class="pc-pill">${avail||lots.length} ${avail?'Avail':'Lots'}</span>
-          <span class="pc-price">${priceStr}</span>
-        </div>
       </div>
       <div class="pc-arrow">→</div>
     </div>`;
