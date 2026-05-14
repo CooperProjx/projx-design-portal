@@ -1689,7 +1689,7 @@ function initMap() {
     leafletMap.setView([-25.5, 152.5], 6);
   }
 
-  renderProjectList();
+  setTimeout(renderProjectList, 0);
 }
 
 function projectPassesFilters(proj){
