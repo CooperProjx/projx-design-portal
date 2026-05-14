@@ -30,7 +30,8 @@ def source(name: str) -> Path:
     return ORIG / name
 
 
-# ── DARE: fill transparent surround with solid black ───────────────────────
+# ── DARE: fill transparent surround with black AND pad canvas wider so the
+#         black extends past the bsc-logo container (aspect ~2.32:1).
 def clean_dare():
     src = source("dare.png")
     if not src.exists():
@@ -43,10 +44,16 @@ def clean_dare():
         for x in range(w):
             r, g, b, a = px[x, y]
             if a < 255:
-                # composite over black: any transparent area becomes opaque black
                 px[x, y] = (0, 0, 0, 255)
+    # Pad to a wider aspect ratio with black so no white shows in the card.
+    target_aspect = 2.6
+    new_w = max(w, int(h * target_aspect))
+    if new_w > w:
+        padded = Image.new("RGBA", (new_w, h), (0, 0, 0, 255))
+        padded.paste(img, ((new_w - w) // 2, 0))
+        img = padded
     img.save(HERE / "dare.png")
-    print(f"  dare.png: filled transparent zones with black ({w}x{h})")
+    print(f"  dare.png: filled+padded to {img.size}")
 
 
 # ── STROUD: detect & crop inside the green frame border ────────────────────
