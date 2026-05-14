@@ -2664,7 +2664,7 @@ function renderSuccessSummary() {
   wrap.innerHTML = `
     <h4>Submission Summary</h4>
     <div class="ss-row"><span class="ss-lbl">Project</span><span class="ss-val">${proj?proj.name:'—'}${proj?(', '+proj.suburb):''}</span></div>
-    ${lot?`<div class="ss-row"><span class="ss-lbl">Lot</span><span class="ss-val">${lot.name} · ${lot.lot_size}m² · ${lot.frontage}m frontage</span></div>`:''}
+    ${lot?`<div class="ss-row"><span class="ss-lbl">Lot</span><span class="ss-val">${lot._virtual ? lot.frontage+'m frontage' : (lot.name + (lot.lot_size?' · '+lot.lot_size+'m²':'') + ' · '+lot.frontage+'m frontage')}</span></div>`:''}
     <div class="ss-row"><span class="ss-lbl">Builder</span><span class="ss-val">${b?b.name:''}</span></div>
     <div class="ss-row"><span class="ss-lbl">Design</span><span class="ss-val">${p.design.name} · ${p.design.bed}bd ${p.design.bath}ba ${p.design.car}car · ${p.design.sqm}m²</span></div>
     <div class="ss-row"><span class="ss-lbl">Facade</span><span class="ss-val">${facadeObj?facadeObj.name:''}${facadePremium?' (+'+fmt(facadePremium)+')':''}</span></div>
@@ -2692,7 +2692,7 @@ function buildEoiEmailBody() {
     ``,
     `── Submission ──`,
     `Project:    ${proj?proj.name:'—'}${proj?(', '+proj.suburb):''}`,
-    lot?`Lot:        ${lot.name} · ${lot.lot_size}m² · ${lot.frontage}m frontage · ${fmt(lot.price)}`:'',
+    lot?`Lot:        ${lot._virtual ? lot.frontage+'m frontage · '+fmt(lot.price) : lot.name + (lot.lot_size?' · '+lot.lot_size+'m²':'') + ' · '+lot.frontage+'m frontage · '+fmt(lot.price)}`:'',
     `Builder:    ${b?b.name:''}`,
     `Design:     ${p.design.name} (${p.design.bed}bd ${p.design.bath}ba ${p.design.car}car · ${p.design.sqm}m²) — From ${fmt(p.design.basePrice)}`,
     `Facade:     ${facadeObj?facadeObj.name:''}${facadePremium?' (+'+fmt(facadePremium)+')':''}`,
