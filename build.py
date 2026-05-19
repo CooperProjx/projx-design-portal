@@ -2317,6 +2317,8 @@ MOBILE_DRAFT_CSS = """
   .map-pane{flex:none;width:100%}
   .map-wrap{height:320px;max-height:320px;min-height:0}
   .map-split #map{height:100%;min-height:auto;touch-action:pan-x pan-y}
+  /* Standalone #map (enquiry portal — no map-split wrapper): keep touch-action for one-finger pan */
+  #map{touch-action:pan-x pan-y}
 
   /* ── Card grids → single column ── */
   .lot-grid{grid-template-columns:1fr;gap:12px}
