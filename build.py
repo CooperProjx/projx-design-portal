@@ -2324,31 +2324,69 @@ MOBILE_DRAFT_CSS = """
   .design-grid{grid-template-columns:1fr;gap:12px}
   .entry-paths-grid{grid-template-columns:1fr;gap:12px}
 
-  /* ── Inclusions: vertical stack, full-width cards, text wraps cleanly ── */
+  /* ── Inclusions: horizontal swipe with free fluid scrolling (no snap = no stuck) ── */
   .inclusions-grid{
-    grid-template-columns:1fr;display:grid;gap:10px;
-    overflow:visible;scroll-snap-type:none;
+    grid-template-columns:none !important;
+    display:flex !important;
+    overflow-x:auto !important;
+    overflow-y:visible;
+    gap:10px;
+    padding-bottom:8px;
+    padding-right:24px;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:none !important;
+    scroll-padding:0;
   }
   .incl-option{
-    width:100%;min-width:0;max-width:100%;
-    box-sizing:border-box;flex-shrink:1;
+    min-width:210px !important;
+    flex-shrink:0 !important;
+    flex-grow:0;
+    scroll-snap-align:none !important;
+    box-sizing:border-box;
   }
   .incl-desc{white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
+  /* Same relaxed snap on facade row — prevents end-of-row stuck feel */
+  .facade-grid{scroll-snap-type:x proximity !important;padding-right:24px !important}
+  .facade-option{scroll-snap-align:none !important}
 
-  /* ── Customize: single column, pricing sidebar locked to container width ── */
-  .customize-layout{grid-template-columns:1fr;gap:14px;max-width:100%}
-  .customize-main{min-width:0;max-width:100%}
-  .customize-section{max-width:100%;overflow-x:hidden}
-  .pricing-sidebar{
-    position:static;width:100%;min-width:0;max-width:100%;
-    box-sizing:border-box;overflow-x:hidden;
+  /* ── Customize: single column, pricing sidebar HARD-LOCKED to viewport width ── */
+  .customize-layout{
+    grid-template-columns:1fr !important;
+    gap:14px !important;
+    max-width:100% !important;
+    width:100% !important;
   }
-  .pricing-sidebar > *{min-width:0;max-width:100%;box-sizing:border-box}
-  .pricing-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
-  .pricing-row-lbl,.pricing-row-val{min-width:0;max-width:100%}
-  .pricing-total{width:100%;max-width:100%;box-sizing:border-box}
-  .pricing-total .amount{font-size:22px;word-break:break-word}
-  .pricing-disclaimer{white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
+  .customize-main{min-width:0 !important;max-width:100% !important;width:100% !important}
+  .customize-section{max-width:100% !important;overflow-x:hidden;padding:16px}
+  .pricing-sidebar{
+    position:static !important;
+    width:100% !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    overflow-x:hidden !important;
+    padding:16px !important;
+    margin:0 !important;
+  }
+  .pricing-sidebar *{min-width:0;max-width:100%;box-sizing:border-box}
+  .pricing-design-preview{padding:10px;width:100%}
+  .pricing-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;width:100%}
+  .pricing-row-lbl,.pricing-row-val{min-width:0;max-width:100%;word-break:break-word}
+  .pricing-rows{width:100%;max-width:100%}
+  .pricing-total{width:100%;max-width:100%;box-sizing:border-box;padding:12px}
+  .pricing-total .lbl{font-size:9px}
+  .pricing-total .amount{font-size:22px !important;word-break:break-word;letter-spacing:-0.5px}
+  .pricing-total .qualifier{font-size:9px}
+  .pricing-disclaimer{
+    white-space:normal !important;
+    word-wrap:break-word !important;
+    overflow-wrap:break-word !important;
+    font-size:10px;
+  }
+  /* Belt-and-braces: clip any stray horizontal overflow at the page level */
+  html,body{overflow-x:hidden !important;max-width:100vw !important}
+  .view{max-width:100vw;overflow-x:hidden}
+  .view-content{max-width:100%;overflow-x:hidden}
 
   /* ── Summary ── */
   .summary-grid{grid-template-columns:1fr;padding:12px;gap:12px}
