@@ -2302,6 +2302,104 @@ def build_region_chips(projects_data):
     )
 
 
+MOBILE_DRAFT_CSS = """
+/* === MOBILE RESPONSIVE DRAFT START === */
+@media (max-width: 768px) {
+  /* ── Map: project list first (full width), map below capped at 320px ── */
+  .map-section{margin:0 0 14px;border-radius:0;border-left:none;border-right:none}
+  .map-split{flex-direction:column;height:auto;min-height:0}
+  .project-list-panel{flex:none;width:100%;max-height:none;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);padding:10px 10px 12px}
+  .map-pane{flex:none;width:100%}
+  .map-wrap{height:320px;max-height:320px;min-height:0}
+  .map-split #map{height:100%;min-height:auto;touch-action:pan-x pan-y}
+
+  /* ── Card grids → single column ── */
+  .lot-grid{grid-template-columns:1fr;gap:12px}
+  .builder-select-grid{grid-template-columns:1fr;gap:12px}
+  .design-grid{grid-template-columns:1fr;gap:12px}
+  .inclusions-grid{grid-template-columns:1fr;gap:10px}
+  .entry-paths-grid{grid-template-columns:1fr;gap:12px}
+
+  /* ── Customize: single column, pricing sidebar below options ── */
+  .customize-layout{grid-template-columns:1fr;gap:14px}
+  .pricing-sidebar{position:static;order:2}
+
+  /* ── Summary ── */
+  .summary-grid{grid-template-columns:1fr;padding:12px;gap:12px}
+  .summary-hero{flex-direction:column;padding:16px 12px;gap:12px}
+  .summary-hero-right{text-align:left}
+  .compare-grid.two-col{grid-template-columns:1fr}
+
+  /* ── Page-level safe-area padding ── */
+  .view-content{
+    padding-left:max(12px, env(safe-area-inset-left));
+    padding-right:max(12px, env(safe-area-inset-right));
+  }
+  .eoi-section{
+    margin-left:max(12px, env(safe-area-inset-left));
+    margin-right:max(12px, env(safe-area-inset-right));
+    padding:20px 16px;
+  }
+  .builder-showcase{padding:16px max(12px, env(safe-area-inset-right)) 16px max(12px, env(safe-area-inset-left))}
+
+  /* ── Top bar: allow pill to wrap ── */
+  .top-bar{height:auto;min-height:54px;padding:8px 12px;flex-wrap:wrap;gap:6px}
+  .top-bar-left{flex:1;min-width:0;flex-wrap:wrap;gap:8px}
+  .top-bar-right{flex-shrink:0}
+  .top-title{font-size:12px}
+  .top-title span{font-size:10px}
+  .confidential-badge{font-size:9px;padding:3px 8px}
+
+  /* ── Breadcrumb: horizontal scroll instead of wrapping ── */
+  .breadcrumb-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:8px 12px}
+  .breadcrumb{flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;gap:4px}
+
+  /* ── Filter chip rows: wrap, chips keep padding ── */
+  .mfb-chips{flex-wrap:wrap;gap:6px}
+  .mfb-chip{padding:7px 12px;font-size:11px;min-height:40px;display:inline-flex;align-items:center}
+  .mfb-select{padding:8px 12px;font-size:12px;min-height:40px}
+  .afr-chips{flex-wrap:wrap;gap:6px}
+  .ausbuild-filter-row{flex-wrap:wrap;gap:12px}
+  .afr-group-price{min-width:100%;max-width:none}
+
+  /* ── Project list: tappable rows and arrow hit area ── */
+  .project-card{min-height:56px}
+  .pc-arrow{padding:12px;margin-right:-12px}
+
+  /* ── Page titles ── */
+  .view-header h2{font-size:24px}
+  .view-header p{font-size:12px}
+
+  /* ── EOI form: stack columns, full-width inputs, 16px (no iOS zoom) ── */
+  .form-grid{grid-template-columns:1fr;gap:12px}
+  .form-field input,.form-field select,.form-field textarea{
+    width:100%;min-height:48px;font-size:16px;
+  }
+  .btn-submit{width:100%;min-height:48px;font-size:16px}
+
+  /* ── Primary action buttons: full-width ── */
+  .continue-btn{
+    width:100%;min-height:48px;font-size:16px;justify-content:center;
+  }
+  .lot-select-btn{min-height:48px;font-size:12px}
+  .design-select-btn{min-height:44px;padding:12px;font-size:12px}
+  .bsc-select-btn{min-height:44px;font-size:12px}
+  .frontage-select-btn{min-height:44px}
+
+  /* ── Sticky bottom bar: safe-area bottom padding ── */
+  .continue-footer{
+    padding-top:12px;
+    padding-bottom:max(12px, env(safe-area-inset-bottom));
+    padding-left:max(12px, env(safe-area-inset-left));
+    padding-right:max(12px, env(safe-area-inset-right));
+    flex-direction:column;gap:8px;align-items:stretch;
+  }
+  .continue-footer-left{font-size:11px;text-align:center}
+}
+/* === MOBILE RESPONSIVE DRAFT END === */
+"""
+
+
 def build_html(all_lots, projects_data, region_map, region_bounds, region_chips):
     now = datetime.datetime.now().strftime("%d %b %Y")
     html = HTML_TEMPLATE
@@ -2400,6 +2498,13 @@ def main():
         f.write(html)
     size_kb = os.path.getsize(out_path) / 1024
     print(f"✓  Written: {out_path} ({size_kb:.0f} KB)")
+
+    mobile_html = html.replace("</style>", MOBILE_DRAFT_CSS + "</style>", 1)
+    mobile_path = os.path.join(out_dir, "mobile-draft.html")
+    with open(mobile_path, "w", encoding="utf-8") as f:
+        f.write(mobile_html)
+    mobile_kb = os.path.getsize(mobile_path) / 1024
+    print(f"✓  Written: {mobile_path} ({mobile_kb:.0f} KB) [mobile draft]")
     print()
     print("📦 Summary")
     for p in projects_data:
