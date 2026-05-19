@@ -2305,10 +2305,15 @@ def build_region_chips(projects_data):
 MOBILE_DRAFT_CSS = """
 /* === MOBILE RESPONSIVE DRAFT START === */
 @media (max-width: 768px) {
-  /* ── Map: project list first (full width), map below capped at 320px ── */
+  /* ── Map: project list collapses to dropdown-style scrollable panel, map below ── */
   .map-section{margin:0 0 14px;border-radius:0;border-left:none;border-right:none}
   .map-split{flex-direction:column;height:auto;min-height:0}
-  .project-list-panel{flex:none;width:100%;max-height:none;border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);padding:10px 10px 12px}
+  .project-list-panel{
+    flex:none;width:100%;
+    max-height:32vh;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    border-right:none;border-bottom:1px solid rgba(255,255,255,0.1);
+    padding:10px 10px 12px;
+  }
   .map-pane{flex:none;width:100%}
   .map-wrap{height:320px;max-height:320px;min-height:0}
   .map-split #map{height:100%;min-height:auto;touch-action:pan-x pan-y}
@@ -2317,8 +2322,16 @@ MOBILE_DRAFT_CSS = """
   .lot-grid{grid-template-columns:1fr;gap:12px}
   .builder-select-grid{grid-template-columns:1fr;gap:12px}
   .design-grid{grid-template-columns:1fr;gap:12px}
-  .inclusions-grid{grid-template-columns:1fr;gap:10px}
   .entry-paths-grid{grid-template-columns:1fr;gap:12px}
+
+  /* ── Inclusions: horizontal swipe row (cards are too text-heavy to stack cleanly) ── */
+  .inclusions-grid{
+    grid-template-columns:none;display:flex;
+    overflow-x:auto;gap:10px;padding-bottom:8px;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  }
+  .incl-option{min-width:220px;flex-shrink:0;scroll-snap-align:start}
+  .incl-desc{white-space:normal;word-wrap:break-word}
 
   /* ── Customize: single column, pricing sidebar below options ── */
   .customize-layout{grid-template-columns:1fr;gap:14px}
