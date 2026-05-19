@@ -955,18 +955,31 @@ html,body{overflow-x:hidden;max-width:100vw}
   .design-grid{grid-template-columns:1fr;gap:12px}
   .entry-paths-grid{grid-template-columns:1fr;gap:12px}
 
-  /* Inclusions: horizontal swipe row (cards too text-heavy to stack) */
+  /* Inclusions: vertical stack, full-width cards, text wraps cleanly */
   .inclusions-grid{
-    grid-template-columns:none;display:flex;
-    overflow-x:auto;gap:10px;padding-bottom:8px;
-    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+    grid-template-columns:1fr;display:grid;gap:10px;
+    overflow:visible;scroll-snap-type:none;
   }
-  .incl-option{min-width:220px;flex-shrink:0;scroll-snap-align:start}
-  .incl-desc{white-space:normal;word-wrap:break-word}
+  .incl-option{
+    width:100%;min-width:0;max-width:100%;
+    box-sizing:border-box;flex-shrink:1;
+  }
+  .incl-desc{white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
 
-  /* Customize: single column, pricing sidebar below options (DOM order) */
-  .customize-layout{grid-template-columns:1fr;gap:14px}
-  .pricing-sidebar{position:static;order:2}
+  /* Customize: single column, pricing sidebar locked to container width */
+  .customize-layout{grid-template-columns:1fr;gap:14px;max-width:100%}
+  .customize-main{min-width:0;max-width:100%}
+  .customize-section{max-width:100%;overflow-x:hidden}
+  .pricing-sidebar{
+    position:static;width:100%;min-width:0;max-width:100%;
+    box-sizing:border-box;overflow-x:hidden;
+  }
+  .pricing-sidebar > *{min-width:0;max-width:100%;box-sizing:border-box}
+  .pricing-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between}
+  .pricing-row-lbl,.pricing-row-val{min-width:0;max-width:100%}
+  .pricing-total{width:100%;max-width:100%;box-sizing:border-box}
+  .pricing-total .amount{font-size:22px;word-break:break-word}
+  .pricing-disclaimer{white-space:normal;word-wrap:break-word;overflow-wrap:break-word}
 
   /* Summary */
   .summary-grid{grid-template-columns:1fr;padding:12px;gap:12px}
