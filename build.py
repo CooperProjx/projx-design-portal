@@ -2557,18 +2557,20 @@ def main():
     print(" done")
 
     out_dir = os.path.dirname(os.path.abspath(__file__))
+
+    html = html.replace("</style>", MOBILE_DRAFT_CSS + "</style>", 1)
+
     out_path = os.path.join(out_dir, "index.html")
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
     size_kb = os.path.getsize(out_path) / 1024
-    print(f"✓  Written: {out_path} ({size_kb:.0f} KB)")
+    print(f"✓  Written: {out_path} ({size_kb:.0f} KB) [mobile CSS bundled]")
 
-    mobile_html = html.replace("</style>", MOBILE_DRAFT_CSS + "</style>", 1)
     mobile_path = os.path.join(out_dir, "mobile-draft.html")
     with open(mobile_path, "w", encoding="utf-8") as f:
-        f.write(mobile_html)
+        f.write(html)
     mobile_kb = os.path.getsize(mobile_path) / 1024
-    print(f"✓  Written: {mobile_path} ({mobile_kb:.0f} KB) [mobile draft]")
+    print(f"✓  Written: {mobile_path} ({mobile_kb:.0f} KB) [mirror of index.html]")
     print()
     print("📦 Summary")
     for p in projects_data:
