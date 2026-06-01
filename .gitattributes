@@ -1,0 +1,11 @@
+# Normalize text files, but never apply EOL conversion to binary assets
+* text=auto
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.mp4 binary
+*.pdf binary
+*.svg text
