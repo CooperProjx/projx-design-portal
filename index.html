@@ -1523,7 +1523,44 @@
   .bp-diff-grid { grid-template-columns:1fr; }
 }
 
- </style>
+ /* ─── ProjX critique additions: social proof, sold, about/team ─── */
+.stats-band{background:var(--primary);color:#fff;padding:26px 32px}
+.stats-band-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px 48px;align-items:center;justify-content:center;text-align:center}
+.stat-item{display:flex;flex-direction:column;gap:3px;min-width:150px}
+.stat-num{font-family:Montserrat,sans-serif;font-size:clamp(24px,3vw,34px);font-weight:900;letter-spacing:-1px;color:#fff;line-height:1}
+.stat-num .accent{color:#5B9BFF}
+.stat-label{font-size:12px;color:rgba(255,255,255,0.62);font-weight:500}
+.stat-live{display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.stat-live .dot{width:8px;height:8px;border-radius:50%;background:#34D399;animation:px-pulse 2s infinite}
+@keyframes px-pulse{0%{box-shadow:0 0 0 0 rgba(52,211,153,0.6)}70%{box-shadow:0 0 0 8px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+.sold-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.sold-card{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg);box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.sold-card-img{height:170px;overflow:hidden;position:relative}
+.sold-card-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.92)}
+.sold-card-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,36,50,0) 45%,rgba(27,36,50,0.7) 100%)}
+.sold-badge{position:absolute;top:12px;left:12px;background:#DC2626;color:#fff;font-size:11px;font-weight:800;letter-spacing:0.5px;padding:6px 12px;border-radius:6px;text-transform:uppercase}
+.sold-card-body{padding:13px 16px}
+.sold-card-name{font-size:16px;font-weight:800;color:var(--primary);letter-spacing:-0.3px}
+.sold-card-meta{font-size:12px;color:var(--text-light);margin-top:2px}
+.about-wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center;margin-bottom:56px}
+.about-copy h3{font-family:Montserrat,sans-serif;font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--primary);letter-spacing:-1px;margin-bottom:16px;line-height:1.16}
+.about-copy p{font-size:15px;color:var(--text-light);line-height:1.7;margin-bottom:14px}
+.about-points{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.about-point{font-size:13px;font-weight:600;color:var(--primary);background:var(--bg-alt);border:1px solid var(--border);border-radius:8px;padding:8px 14px}
+.office-vignette{position:relative;border-radius:16px;overflow:hidden;min-height:300px;background:linear-gradient(135deg,#1B2432 0%,#2C3A52 100%);display:flex;align-items:flex-end;padding:26px;box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.office-vignette .wm{position:absolute;right:-24px;bottom:-24px;width:220px;height:auto;opacity:0.12;pointer-events:none}
+.office-vignette-cap{position:relative;color:#fff;z-index:1}
+.office-vignette-cap .eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#5B9BFF;font-weight:700}
+.office-vignette-cap .ttl{font-size:20px;font-weight:800;margin-top:4px}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+.team-card{text-align:center;padding:24px 16px;border:1px solid var(--border);border-radius:14px;background:var(--bg);transition:transform 0.2s,box-shadow 0.2s}
+.team-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+.team-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-size:24px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--accent),var(--primary))}
+.team-name{font-size:16px;font-weight:800;color:var(--primary)}
+.team-role{font-size:12px;color:var(--accent);font-weight:600;margin-top:2px}
+.team-tag{font-size:12px;color:var(--text-light);margin-top:8px;line-height:1.5}
+@media(max-width:768px){.about-wrap{grid-template-columns:1fr;gap:28px}.stats-band-inner{gap:16px 26px}}
+</style>
 </head>
 <body>
 
@@ -1558,6 +1595,8 @@
  <ul class="nav-links" id="navLinks">
  <li><a href="#estates">Estates</a></li>
  <li><a href="#builders">Builders</a></li>
+ <li><a href="#sold">Sold</a></li>
+ <li><a href="#about">About</a></li>
  <li><a href="#" class="nav-cta" onclick="event.preventDefault();openWizard('land')">Register Interest</a></li>
  </ul>
  <button class="nav-hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
@@ -1582,6 +1621,16 @@
 </section>
 
 <!-- ─── ESTATES ─── -->
+<!-- SOCIAL PROOF / LIVE STATS — placeholder figures, update with real numbers -->
+<div class="stats-band fade-in">
+ <div class="stats-band-inner">
+ <div class="stat-item"><span class="stat-num"><span class="accent">27</span></span><span class="stat-label stat-live"><span class="dot"></span>families secured a block · last 90 days</span></div>
+ <div class="stat-item"><span class="stat-num">$48M+</span><span class="stat-label">in packages settled this year</span></div>
+ <div class="stat-item"><span class="stat-num">4,500+</span><span class="stat-label">lots across 18 active estates</span></div>
+ <div class="stat-item"><span class="stat-num">4.9★</span><span class="stat-label">average buyer rating</span></div>
+ </div>
+</div>
+
 <section id="estates">
  <div class="section-inner">
  <div class="estates-header fade-in">
@@ -1634,6 +1683,51 @@
  <p class="section-subtitle">Browse designs from our trusted builder network</p>
  </div>
  <div class="builders-grid" id="buildersGrid"></div>
+ </div>
+</section>
+
+<!-- ─── SOLD / PROVEN TRACK RECORD — placeholder estates, swap for real sold results ─── -->
+<section id="sold" style="background:var(--bg-alt)">
+ <div class="section-inner">
+ <div class="section-header fade-in">
+ <h2 class="section-title">Proven Track Record</h2>
+ <p class="section-subtitle">Recently sold &amp; settled across our estates <span style="color:#9CA3AF">— sample data, update with real results</span></p>
+ </div>
+ <div class="sold-grid fade-in">
+ <div class="sold-card"><div class="sold-card-img"><img src="img/oakland.jpg" alt="Oakland Estate" loading="lazy"><div class="sold-card-overlay"></div></div><span class="sold-badge">Sold Out</span><div class="sold-card-body"><div class="sold-card-name">Oakland Estate</div><div class="sold-card-meta">Beaudesert · 42 lots settled</div></div></div>
+ <div class="sold-card"><div class="sold-card-img"><img src="img/harvest.jpg" alt="Harvest" loading="lazy"><div class="sold-card-overlay"></div></div><span class="sold-badge">Stage 1 Sold</span><div class="sold-card-body"><div class="sold-card-name">Harvest</div><div class="sold-card-meta">Byron Bay · Stage 2 releasing</div></div></div>
+ <div class="sold-card"><div class="sold-card-img"><img src="img/woodchester.jpg" alt="Woodchester" loading="lazy"><div class="sold-card-overlay"></div></div><span class="sold-badge">94% Sold</span><div class="sold-card-body"><div class="sold-card-name">Woodchester</div><div class="sold-card-meta">Gatton · Final lots remaining</div></div></div>
+ <div class="sold-card"><div class="sold-card-img"><img src="img/riverina.jpg" alt="Riverina" loading="lazy"><div class="sold-card-overlay"></div></div><span class="sold-badge">Sold Out</span><div class="sold-card-body"><div class="sold-card-name">Riverina</div><div class="sold-card-meta">Carrara · 28 lots settled</div></div></div>
+ </div>
+ </div>
+</section>
+
+<!-- ─── ABOUT + TEAM — placeholder copy/photos, update with real bios & office photo ─── -->
+<section id="about">
+ <div class="section-inner">
+ <div class="section-header fade-in">
+ <h2 class="section-title">About ProjX</h2>
+ <p class="section-subtitle">South East Queensland's house &amp; land specialists</p>
+ </div>
+ <div class="about-wrap fade-in">
+ <div class="about-copy">
+ <h3>We connect buyers with the right block, the right builder, and the right price.</h3>
+ <p>ProjX manages South East Queensland's strongest active house &amp; land pipeline — partnering with leading developers and trusted builders to bring you proven product across 18+ estates.</p>
+ <p>From your first enquiry through to settlement, our team guides you through lot selection, builder matching and package pricing — so you can move forward with confidence.</p>
+ <div class="about-points"><span class="about-point">✓ 4,500+ lots</span><span class="about-point">✓ 4 builder partners</span><span class="about-point">✓ Proven, sold-before product</span><span class="about-point">✓ End-to-end support</span></div>
+ </div>
+ <div class="office-vignette">
+ <img class="wm" src="projx-logo-light.png" alt="" onerror="this.style.display='none'">
+ <div class="office-vignette-cap"><div class="eyebrow">Our Team &amp; Office</div><div class="ttl">Local people, on the ground in SEQ</div><div style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:8px">📷 Add your team &amp; office photo here</div></div>
+ </div>
+ </div>
+ <div class="section-header fade-in" style="margin-bottom:28px"><h2 class="section-title" style="font-size:24px">Meet the Team</h2><p class="section-subtitle">Placeholder — add real names, roles &amp; headshots</p></div>
+ <div class="team-grid fade-in">
+ <div class="team-card"><div class="team-avatar">PX</div><div class="team-name">Team Member</div><div class="team-role">Director</div><div class="team-tag">Add a short bio here.</div></div>
+ <div class="team-card"><div class="team-avatar">PX</div><div class="team-name">Team Member</div><div class="team-role">Sales Manager</div><div class="team-tag">Add a short bio here.</div></div>
+ <div class="team-card"><div class="team-avatar">PX</div><div class="team-name">Team Member</div><div class="team-role">Project Consultant</div><div class="team-tag">Add a short bio here.</div></div>
+ <div class="team-card"><div class="team-avatar">PX</div><div class="team-name">Team Member</div><div class="team-role">Buyer Liaison</div><div class="team-tag">Add a short bio here.</div></div>
+ </div>
  </div>
 </section>
 
@@ -3660,6 +3754,16 @@
  closeCompareModal();
  showDesignDetail(designName);
  }
+</script>
+<script>
+/* Ensure ProjX-added sections (#sold, #about, stats band) reveal even if the scroll observer misses them */
+(function(){
+  function reveal(){
+    document.querySelectorAll('#sold .fade-in, #about .fade-in, .stats-band.fade-in').forEach(function(e){ e.classList.add('visible'); });
+  }
+  if (document.readyState !== 'loading') reveal();
+  else document.addEventListener('DOMContentLoaded', reveal);
+})();
 </script>
 </body>
 </html>
