@@ -3219,10 +3219,15 @@
  }
 
  // ─── UPGRADES STEP ──────────────────────────────────────────────
+ const FACADES = [
+ {id:'standard', name:'Standard', desc:'Clean rendered facade, included with every home', price:'Included', delta:0},
+ {id:'modern', name:'Modern', desc:'Feature cladding, bold entry and contemporary lines', price:'+ $7,500', delta:7500},
+ {id:'premium', name:'Premium', desc:'Mixed materials, portico and premium street appeal', price:'+ $14,000', delta:14000}
+ ];
+
  const UPGRADE_OPTIONS = [
  {id:'ducted-ac', name:'Ducted Air Conditioning', desc:'Whole-home climate control with zoned ducted system', price:'$8,500 – $14,000', icon:''},
  {id:'ceiling-height', name:'Increased Ceiling Heights', desc:'2.7m ceilings throughout (standard 2.4m)', price:'$4,000 – $7,500', icon:''},
- {id:'facade', name:'Premium Facade Upgrade', desc:'Rendered finish, feature brick, modern facade options', price:'$5,000 – $15,000', icon:''},
  {id:'kitchen', name:'Premium Kitchen Package', desc:'Stone benchtops, 900mm appliances, soft-close cabinetry', price:'$6,000 – $12,000', icon:''},
  {id:'solar', name:'Solar Panel System', desc:'6.6kW solar + 10kW battery for energy independence', price:'$8,000 – $16,000', icon:''},
  {id:'flooring', name:'Premium Flooring', desc:'Hybrid timber flooring throughout living areas', price:'$3,500 – $8,000', icon:''},
@@ -3247,7 +3252,19 @@
  '</div>';
  }).join('');
 
- return  '<div class="wizard-step-heading"><h2>Customise Your Package</h2><p>Select any upgrades you\'re interested in — these will be included in your consultation.</p></div>' +
+ var fsel = wizardState.facade || 'standard';
+ var facadeCards = FACADES.map(function(f){ var on = fsel === f.id;
+ return '<div onclick="selectFacade(\'' + f.id + '\')" style="flex:1;min-width:180px;background:var(--bg);border:2px solid ' + (on?'var(--accent)':'var(--border)') + ';border-radius:var(--radius);padding:18px;cursor:pointer;transition:all 0.2s;position:relative">' +
+ (on?'<div style="position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800">✓</div>':'') +
+ '<div style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:4px">' + f.name + '</div>' +
+ '<div style="font-size:12px;color:var(--text-light);margin-bottom:8px;line-height:1.5">' + f.desc + '</div>' +
+ '<div style="font-size:13px;font-weight:700;color:' + (f.delta===0?'var(--success)':'var(--accent)') + '">' + f.price + '</div></div>';
+ }).join('');
+
+ return  '<div class="wizard-step-heading"><h2>Customise Your Package</h2><p>Choose your facade and any upgrades you\'re interested in — these will be included in your consultation.</p></div>' +
+ '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Choose Your Facade</div>' +
+ '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px">' + facadeCards + '</div>' +
+ '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Optional Upgrades</div>' +
  '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:32px">' + cards + '</div>' +
  '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
  '<span style="font-size:13px;color:var(--text-light);align-self:center">' + selected.length + ' upgrade' + (selected.length !== 1 ? 's' : '') + ' selected</span>' +
@@ -3259,6 +3276,11 @@
  if (!wizardState.upgrades) wizardState.upgrades = [];
  const idx = wizardState.upgrades.indexOf(id);
  if (idx === -1) { wizardState.upgrades.push(id); } else { wizardState.upgrades.splice(idx, 1); }
+ renderWizardStep();
+ }
+
+ function selectFacade(id) {
+ wizardState.facade = id;
  renderWizardStep();
  }
 
@@ -3516,11 +3538,12 @@
       var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid});
       if (u) { var ps = u.price.match(/[\d,]+/g); if (ps) upgEstimate += parseInt(ps[0].replace(/,/g, '')); }
     });
+    var _facE = FACADES.find(function(f){return f.id===(wizardState.facade||'standard');}); if (_facE) upgEstimate += _facE.delta;
     const totalWithUpgrades = totalPkg > 0 ? totalPkg + upgEstimate : 0;
  const priceVal = totalWithUpgrades > 0 ? 'From $' + Math.round(totalWithUpgrades).toLocaleString() : (totalPkg > 0 ? 'From $' + Math.round(totalPkg).toLocaleString() : (d ? d.price : 'Contact for pricing'));
  const priceBreakdown = totalPkg > 0 ? 'Land from $' + Math.round(landFrom).toLocaleString() + ' + Build ' + d.price + (upgEstimate > 0 ? ' + Upgrades from $' + upgEstimate.toLocaleString() : '') : '';
  const buyerLabel = wizardState.buyerType === 'owner' ? ' Owner Occupier' : wizardState.buyerType === 'investor' ? ' Investor' : '—';
- const selectedUpgrades = (wizardState.upgrades || []).map(function(uid) { var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid}); return u ? u.name : ''; }).filter(Boolean);
+ var _facL = FACADES.find(function(x){return x.id===(wizardState.facade||'standard');}); const selectedUpgrades = (_facL ? ['Facade: ' + _facL.name] : []).concat((wizardState.upgrades || []).map(function(uid) { var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid}); return u ? u.name : ''; }).filter(Boolean));
 
  const financeLabel = wizardState.financeStatus === 'yes' ? ' Pre-approved' : wizardState.financeStatus === 'no' ? ' Not yet' : wizardState.financeStatus === 'help' ? ' Needs referral' : '—';
  // buyer type shown in form only
