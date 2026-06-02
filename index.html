@@ -1560,6 +1560,22 @@
 .team-role{font-size:12px;color:var(--accent);font-weight:600;margin-top:2px}
 .team-tag{font-size:12px;color:var(--text-light);margin-top:8px;line-height:1.5}
 @media(max-width:768px){.about-wrap{grid-template-columns:1fr;gap:28px}.stats-band-inner{gap:16px 26px}}
+/* ─── Chatbot ─── */
+#px-chat-btn{position:fixed;right:22px;bottom:22px;z-index:3000;width:58px;height:58px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;box-shadow:0 8px 24px rgba(59,125,221,0.45);font-size:24px;display:flex;align-items:center;justify-content:center;transition:transform 0.2s}
+#px-chat-btn:hover{transform:scale(1.08)}
+#px-chat-panel{position:fixed;right:22px;bottom:90px;z-index:3000;width:340px;max-width:calc(100vw - 44px);height:480px;max-height:calc(100vh - 130px);background:#fff;border-radius:16px;box-shadow:0 16px 48px rgba(0,0,0,0.25);display:none;flex-direction:column;overflow:hidden;border:1px solid var(--border)}
+#px-chat-panel.open{display:flex}
+.px-chat-head{background:var(--primary);color:#fff;padding:16px 18px;display:flex;align-items:center;justify-content:space-between}
+.px-chat-head .t{font-weight:800;font-size:15px}
+.px-chat-head .s{font-size:11px;color:rgba(255,255,255,0.6)}
+.px-chat-close{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1}
+.px-chat-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--bg-alt)}
+.px-msg{max-width:86%;padding:10px 13px;border-radius:12px;font-size:13px;line-height:1.5}
+.px-msg.bot{background:#fff;border:1px solid var(--border);color:var(--primary);align-self:flex-start;border-bottom-left-radius:4px}
+.px-msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.px-chat-quick{display:flex;flex-wrap:wrap;gap:7px;padding:12px 16px;border-top:1px solid var(--border);background:#fff}
+.px-quick{font-size:12px;font-weight:600;color:var(--accent);background:var(--bg-alt);border:1px solid var(--border);border-radius:16px;padding:7px 12px;cursor:pointer;transition:all 0.15s}
+.px-quick:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -2337,7 +2353,8 @@
  const needsLabel = (b.id === 'creation'); // Creation icon has no text
 
  return `
- <div class="builder-card fade-in fade-in-delay-${i%4+1}" style="display:flex;flex-direction:column">
+ <div class="builder-card fade-in fade-in-delay-${i%4+1}" style="display:flex;flex-direction:column;position:relative">
+ ${i===0 ? '<div style="position:absolute;top:10px;left:10px;z-index:2;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:0.5px;padding:5px 10px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.2)">★ MOST POPULAR</div>' : ''}
  <div style="height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg-alt);padding:20px;gap:8px">
  <img src="${BUILDER_LOGOS[b.id]}" alt="${b.name}" style="${logoStyle}object-fit:contain" onerror="this.onerror=null;this.style.display='none'"/>
  ${needsLabel ? '<div style="font-size:11px;font-weight:800;color:var(--primary);letter-spacing:1.5px;text-transform:uppercase">Creation Homes</div>' : ''}
@@ -2737,6 +2754,11 @@
  }
 
 
+ function getProjectAgent(p) {
+ // Placeholder agent — assign the real specialist for each estate here later
+ return { name: 'ProjX Estate Specialist', phone: '1300 000 000', email: 'info@projxaustralia.com.au' };
+ }
+
  function showProjectDetail(projectId) {
     wizardPushState('projects');
     wizardState._inDetail = true;
@@ -2772,6 +2794,13 @@
  '</div></div>';
  }
 
+ var _ag = getProjectAgent(p);
+ html += '<div style="display:flex;align-items:center;gap:14px;background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:20px;flex-wrap:wrap">' +
+ '<div style="width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--primary));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:Montserrat,sans-serif">PX</div>' +
+ '<div style="flex:1;min-width:150px"><div style="font-size:11px;color:var(--text-light);font-weight:600">Your ' + p.name + ' specialist</div><div style="font-size:15px;font-weight:800;color:var(--primary)">' + _ag.name + '</div></div>' +
+ '<a href="tel:' + _ag.phone.replace(/\s/g,'') + '" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--success);color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;font-family:Montserrat,sans-serif">Call</a>' +
+ '<a href="mailto:' + _ag.email + '?subject=Enquiry%20-%20' + encodeURIComponent(p.name) + '" style="display:inline-flex;align-items:center;gap:6px;padding:10px 18px;background:var(--accent);color:#fff;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;font-family:Montserrat,sans-serif">Email</a>' +
+ '</div>';
  html += '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px">' +
  '<a href="#" onclick="event.preventDefault()" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--bg-alt);border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--primary);text-decoration:none;font-family:Montserrat,sans-serif;transition:all 0.2s">Download Brochure</a>' +
  '<a href="#" onclick="event.preventDefault()" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--bg-alt);border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--primary);text-decoration:none;font-family:Montserrat,sans-serif;transition:all 0.2s">View Masterplan</a>' +
@@ -2930,6 +2959,8 @@
  renderWizardStep();
  }
 
+ function wizardSortDesigns(s){ wizardState._designSort = (wizardState._designSort===s?'none':s); renderWizardStep(); }
+
  function renderLandStep4() {
  // Filter designs by selected frontage width
  const maxFrontage = wizardState.selectedFrontage || 99;
@@ -2950,6 +2981,9 @@
  const activeFilter = wizardState._designFilter || 'All';
  var filtered = (activeFilter === 'All') ? DESIGNS : DESIGNS.filter(function(d) { return d.builder === activeFilter; });
  if (maxFrontage < 99) filtered = filtered.filter(designFits);
+ var dsort = wizardState._designSort || 'none';
+ if (dsort === 'asc') filtered = filtered.slice().sort(function(a,b){ return (parseInt(a.price.replace(/[^0-9]/g,''))||0) - (parseInt(b.price.replace(/[^0-9]/g,''))||0); });
+ else if (dsort === 'desc') filtered = filtered.slice().sort(function(a,b){ return (parseInt(b.price.replace(/[^0-9]/g,''))||0) - (parseInt(a.price.replace(/[^0-9]/g,''))||0); });
 
  const tabs = ['All'].concat(allBuilders).map(function(b) {
  return '<button class="wizard-filter-tab ' + (b === activeFilter ? 'active' : '') + '" onclick="wizardFilterDesigns(\'' + b.replace(/'/g, "\\'") + '\')">' + (b === 'All' ? 'All Designs' : b) + '</button>';
@@ -2976,6 +3010,7 @@
 
  return  '<div class="wizard-step-heading"><h2>Compatible designs for ' + wizardState.project.name + '</h2><p>' + (maxFrontage < 99 ? 'Showing designs that fit your ' + frontageLabel + ' wide lot — ' + filtered.length + ' designs available' : 'Select a design to continue') + '</p></div>' +
  '<div class="wizard-filter-tabs">' + tabs + '</div>' +
+ '<div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;flex-wrap:wrap"><span style="font-size:12px;font-weight:600;color:var(--text-light)">Sort by price:</span><button class="wizard-filter-tab' + (dsort==='asc'?' active':'') + '" onclick="wizardSortDesigns(\'asc\')">Cheapest first</button><button class="wizard-filter-tab' + (dsort==='desc'?' active':'') + '" onclick="wizardSortDesigns(\'desc\')">Dearest first</button></div>' +
  '<div class="wizard-design-grid">' + cards + '</div>';
  }
 
@@ -3225,6 +3260,14 @@
  {id:'premium', name:'Premium', desc:'Mixed materials, portico and premium street appeal', price:'+ $14,000', delta:14000}
  ];
 
+ const VALUE_PACK = {
+ id:'valuepack',
+ name:'Buyer Value Pack',
+ items:['Ducted Air Conditioning','Premium Kitchen Package','Upgraded Flooring','Landscaping Package','Window Furnishings'],
+ savings:11000,
+ blurb:'Our most-requested upgrades bundled together for price-conscious buyers — add the pack and save $11,000 versus selecting them separately.'
+ };
+
  const UPGRADE_OPTIONS = [
  {id:'ducted-ac', name:'Ducted Air Conditioning', desc:'Whole-home climate control with zoned ducted system', price:'$8,500 – $14,000', icon:''},
  {id:'ceiling-height', name:'Increased Ceiling Heights', desc:'2.7m ceilings throughout (standard 2.4m)', price:'$4,000 – $7,500', icon:''},
@@ -3262,6 +3305,13 @@
  }).join('');
 
  return  '<div class="wizard-step-heading"><h2>Customise Your Package</h2><p>Choose your facade and any upgrades you\'re interested in — these will be included in your consultation.</p></div>' +
+ '<div onclick="toggleValuePack()" style="background:linear-gradient(135deg,var(--primary),#2C3A52);color:#fff;border:2px solid ' + (wizardState.valuePack?'var(--accent)':'transparent') + ';border-radius:var(--radius);padding:22px;margin-bottom:28px;cursor:pointer;position:relative">' +
+ '<div style="position:absolute;top:14px;right:16px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:6px 12px;border-radius:20px">SAVE $11,000</div>' +
+ '<div style="font-size:18px;font-weight:900;letter-spacing:-0.5px;margin-bottom:6px">★ ' + VALUE_PACK.name + '</div>' +
+ '<div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:12px;max-width:560px">' + VALUE_PACK.blurb + '</div>' +
+ '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">' + VALUE_PACK.items.map(function(it){return '<span style="background:rgba(255,255,255,0.12);font-size:12px;font-weight:600;padding:5px 11px;border-radius:6px">✓ ' + it + '</span>';}).join('') + '</div>' +
+ '<span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:' + (wizardState.valuePack?'var(--accent)':'#fff') + ';color:' + (wizardState.valuePack?'#fff':'var(--primary)') + ';padding:10px 18px;border-radius:8px">' + (wizardState.valuePack?'✓ Added to your package':'Add the Value Pack') + '</span>' +
+ '</div>' +
  '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Choose Your Facade</div>' +
  '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px">' + facadeCards + '</div>' +
  '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Optional Upgrades</div>' +
@@ -3281,6 +3331,11 @@
 
  function selectFacade(id) {
  wizardState.facade = id;
+ renderWizardStep();
+ }
+
+ function toggleValuePack() {
+ wizardState.valuePack = !wizardState.valuePack;
  renderWizardStep();
  }
 
@@ -3539,11 +3594,12 @@
       if (u) { var ps = u.price.match(/[\d,]+/g); if (ps) upgEstimate += parseInt(ps[0].replace(/,/g, '')); }
     });
     var _facE = FACADES.find(function(f){return f.id===(wizardState.facade||'standard');}); if (_facE) upgEstimate += _facE.delta;
+    if (wizardState.valuePack) upgEstimate -= 11000;
     const totalWithUpgrades = totalPkg > 0 ? totalPkg + upgEstimate : 0;
  const priceVal = totalWithUpgrades > 0 ? 'From $' + Math.round(totalWithUpgrades).toLocaleString() : (totalPkg > 0 ? 'From $' + Math.round(totalPkg).toLocaleString() : (d ? d.price : 'Contact for pricing'));
  const priceBreakdown = totalPkg > 0 ? 'Land from $' + Math.round(landFrom).toLocaleString() + ' + Build ' + d.price + (upgEstimate > 0 ? ' + Upgrades from $' + upgEstimate.toLocaleString() : '') : '';
  const buyerLabel = wizardState.buyerType === 'owner' ? ' Owner Occupier' : wizardState.buyerType === 'investor' ? ' Investor' : '—';
- var _facL = FACADES.find(function(x){return x.id===(wizardState.facade||'standard');}); const selectedUpgrades = (_facL ? ['Facade: ' + _facL.name] : []).concat((wizardState.upgrades || []).map(function(uid) { var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid}); return u ? u.name : ''; }).filter(Boolean));
+ var _facL = FACADES.find(function(x){return x.id===(wizardState.facade||'standard');}); const selectedUpgrades = (wizardState.valuePack ? ['Buyer Value Pack (save $11,000)'] : []).concat(_facL ? ['Facade: ' + _facL.name] : []).concat((wizardState.upgrades || []).map(function(uid) { var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid}); return u ? u.name : ''; }).filter(Boolean));
 
  const financeLabel = wizardState.financeStatus === 'yes' ? ' Pre-approved' : wizardState.financeStatus === 'no' ? ' Not yet' : wizardState.financeStatus === 'help' ? ' Needs referral' : '—';
  // buyer type shown in form only
@@ -3589,6 +3645,7 @@
  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">' +
  '<div class="wizard-form-group"><label class="wizard-form-label">I am a...</label><select class="wizard-form-select" id="wLeadBuyerType"><option value="owner">Owner Occupier</option><option value="investor">Investor</option></select></div>' +
  '<div class="wizard-form-group"><label class="wizard-form-label">Finance Status</label><select class="wizard-form-select" id="wLeadFinance"><option value="pre-approved">Pre-approved</option><option value="not-yet">Not yet started</option><option value="need-help">Need finance help</option></select></div>' +
+ '<div class="wizard-form-group"><label class="wizard-form-label">Your Build Budget</label><select class="wizard-form-select" id="wLeadBudget"><option value="">Select a range</option><option>Under $600,000</option><option>$600,000 – $750,000</option><option>$750,000 – $900,000</option><option>$900,000 – $1.1M</option><option>$1.1M+</option></select></div>' +
  '</div>' +
  '<details class="wizard-calc-details" style="margin-bottom:20px;border:1px solid var(--border);border-radius:10px;overflow:hidden">' +
  '<summary style="padding:14px 18px;font-size:14px;font-weight:700;color:var(--primary);cursor:pointer;background:var(--bg-alt)">Mortgage Choice Repayment Calculator</summary>' +
@@ -3787,6 +3844,35 @@
   if (document.readyState !== 'loading') reveal();
   else document.addEventListener('DOMContentLoaded', reveal);
 })();
+</script>
+<!-- ─── CHATBOT (rule-based FAQ + agent handoff) ─── -->
+<button id="px-chat-btn" onclick="pxChatToggle()" aria-label="Chat with ProjX">💬</button>
+<div id="px-chat-panel" role="dialog" aria-label="ProjX chat">
+ <div class="px-chat-head"><div><div class="t">ProjX Assistant</div><div class="s">Here to help you find your package</div></div><button class="px-chat-close" onclick="pxChatToggle()" aria-label="Close chat">✕</button></div>
+ <div class="px-chat-body" id="pxChatBody"></div>
+ <div class="px-chat-quick" id="pxChatQuick"></div>
+</div>
+<script>
+/* Rule-based ProjX assistant — no backend. Routes to agent contact. */
+var PX_CHAT_REPLIES = {
+ estates: "We have 18 active estates across South East Queensland with 4,500+ lots. Scroll to 'Our Estates' to browse by region and budget — or I can connect you with an agent.",
+ pricing: "House & land packages start in the low $600,000s and vary by estate, lot size and builder. Tap 'Register Interest' for an exact package price, or ask to talk to an agent.",
+ comingsoon: "Some estates are marked 'Coming Soon'. Register your interest and your estate specialist will contact you the moment lots are released.",
+ builders: "We partner with trusted builders — browse 'Our Builders' to see their designs, or tell an agent your budget and we'll match the right fit.",
+ agent: "Happy to connect you! Call 1300 000 000 (placeholder) or email info@projxaustralia.com.au — or tap 'Register Interest' and your estate specialist will reach out within 1 business day."
+};
+var PX_CHAT_QUICK = [
+ {k:'estates', t:'Available estates'},
+ {k:'pricing', t:'Pricing'},
+ {k:'comingsoon', t:'Coming soon'},
+ {k:'builders', t:'Builders'},
+ {k:'agent', t:'Talk to an agent'}
+];
+function pxChatToggle(){ var p=document.getElementById('px-chat-panel'); if(!p) return; p.classList.toggle('open'); if(p.classList.contains('open') && !p._init){ p._init=true; pxChatBot("Hi! I'm the ProjX assistant. How can I help you find your house & land package today?"); pxChatRenderQuick(); } }
+function pxChatBot(text){ var b=document.getElementById('pxChatBody'); if(!b) return; var d=document.createElement('div'); d.className='px-msg bot'; d.textContent=text; b.appendChild(d); b.scrollTop=b.scrollHeight; }
+function pxChatUser(text){ var b=document.getElementById('pxChatBody'); if(!b) return; var d=document.createElement('div'); d.className='px-msg user'; d.textContent=text; b.appendChild(d); b.scrollTop=b.scrollHeight; }
+function pxChatRenderQuick(){ var q=document.getElementById('pxChatQuick'); if(!q) return; q.innerHTML=PX_CHAT_QUICK.map(function(o){ return '<span class="px-quick" onclick="pxChatAsk(\'' + o.k + '\',\'' + o.t.replace(/'/g,'') + '\')">' + o.t + '</span>'; }).join(''); }
+function pxChatAsk(key, label){ pxChatUser(label); setTimeout(function(){ pxChatBot(PX_CHAT_REPLIES[key] || "Let me connect you with an agent — email info@projxaustralia.com.au."); }, 350); }
 </script>
 </body>
 </html>
