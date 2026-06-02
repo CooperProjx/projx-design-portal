@@ -1133,7 +1133,7 @@
  .wizard-close-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
 
  .wizard-body {
-    padding-top: 72px; max-width: 1200px; margin: 0 auto; padding: 52px 32px; }
+    max-width: 1200px; margin: 0 auto; padding: 96px 32px 52px; }
 
  .wizard-step-heading { text-align: center; margin-bottom: 48px; }
  .wizard-step-heading h2 {
@@ -1397,7 +1397,7 @@
  @media (max-width: 900px) {
  .wizard-package-layout { grid-template-columns: 1fr; gap: 24px; }
  .wizard-body {
-    padding-top: 72px; padding: 32px 20px; }
+    padding: 92px 20px 32px; }
  .wizard-header { padding: 0 16px; }
  }
  @media (max-width: 640px) {
@@ -1406,7 +1406,7 @@
  .wizard-design-grid { grid-template-columns: 1fr 1fr; }
  .wizard-builder-grid { grid-template-columns: 1fr; max-width: 100%; }
  .wizard-body {
-    padding-top: 72px; padding: 24px 14px; }
+    padding: 88px 14px 24px; }
  .wizard-step-heading h2 { font-size: 22px; letter-spacing: -0.5px; }
  .wizard-lot-summary { padding: 24px 16px; }
  .wizard-lot-summary-details { gap: 16px; }
@@ -1524,6 +1524,7 @@
 }
 
  /* ─── ProjX critique additions: social proof, sold, about/team ─── */
+section[id]{scroll-margin-top:84px}
 .stats-band{background:var(--primary);color:#fff;padding:26px 32px}
 .stats-band-inner{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px 48px;align-items:center;justify-content:center;text-align:center}
 .stat-item{display:flex;flex-direction:column;gap:3px;min-width:150px}
@@ -2961,6 +2962,8 @@
 
  function wizardSortDesigns(s){ wizardState._designSort = (wizardState._designSort===s?'none':s); renderWizardStep(); }
 
+ function wizardSetBudget(v){ var n=parseInt(v,10)||0; wizardState._designBudget = (n>=1500000?0:n); renderWizardStep(); }
+
  function renderLandStep4() {
  // Filter designs by selected frontage width
  const maxFrontage = wizardState.selectedFrontage || 99;
@@ -2981,6 +2984,10 @@
  const activeFilter = wizardState._designFilter || 'All';
  var filtered = (activeFilter === 'All') ? DESIGNS : DESIGNS.filter(function(d) { return d.builder === activeFilter; });
  if (maxFrontage < 99) filtered = filtered.filter(designFits);
+ var _budget = wizardState._designBudget || 0;
+ if (_budget > 0) filtered = filtered.filter(function(d){ var bp=parseInt(d.price.replace(/[^0-9]/g,''))||0; var pkg = landFromPrice>0 ? landFromPrice+bp : bp; return pkg <= _budget; });
+ var _sliderVal = _budget>0 ? _budget : 1500000;
+ var _budgetLabel = _budget>0 ? '$' + _budget.toLocaleString() : 'Any';
  var dsort = wizardState._designSort || 'none';
  if (dsort === 'asc') filtered = filtered.slice().sort(function(a,b){ return (parseInt(a.price.replace(/[^0-9]/g,''))||0) - (parseInt(b.price.replace(/[^0-9]/g,''))||0); });
  else if (dsort === 'desc') filtered = filtered.slice().sort(function(a,b){ return (parseInt(b.price.replace(/[^0-9]/g,''))||0) - (parseInt(a.price.replace(/[^0-9]/g,''))||0); });
@@ -3010,8 +3017,16 @@
 
  return  '<div class="wizard-step-heading"><h2>Compatible designs for ' + wizardState.project.name + '</h2><p>' + (maxFrontage < 99 ? 'Showing designs that fit your ' + frontageLabel + ' wide lot — ' + filtered.length + ' designs available' : 'Select a design to continue') + '</p></div>' +
  '<div class="wizard-filter-tabs">' + tabs + '</div>' +
- '<div style="display:flex;gap:8px;align-items:center;margin-bottom:16px;flex-wrap:wrap"><span style="font-size:12px;font-weight:600;color:var(--text-light)">Sort by price:</span><button class="wizard-filter-tab' + (dsort==='asc'?' active':'') + '" onclick="wizardSortDesigns(\'asc\')">Cheapest first</button><button class="wizard-filter-tab' + (dsort==='desc'?' active':'') + '" onclick="wizardSortDesigns(\'desc\')">Dearest first</button></div>' +
- '<div class="wizard-design-grid">' + cards + '</div>';
+ '<div style="display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;justify-content:space-between;background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:24px">' +
+ '<div style="flex:1;min-width:240px">' +
+ '<div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:var(--primary);margin-bottom:8px"><span>Filter by budget</span><span style="color:var(--accent)" id="lsBudgetVal">' + _budgetLabel + '</span></div>' +
+ '<input type="range" min="500000" max="1500000" step="25000" value="' + _sliderVal + '" style="width:100%;accent-color:var(--accent);cursor:pointer" oninput="var v=+this.value;document.getElementById(\'lsBudgetVal\').textContent=(v>=1500000?\'Any\':\'$\'+v.toLocaleString())" onchange="wizardSetBudget(this.value)"/>' +
+ '</div>' +
+ '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span style="font-size:12px;font-weight:700;color:var(--primary)">Sort</span>' +
+ '<button class="wizard-filter-tab' + (dsort==='asc'?' active':'') + '" onclick="wizardSortDesigns(\'asc\')">Price: Low to High</button>' +
+ '<button class="wizard-filter-tab' + (dsort==='desc'?' active':'') + '" onclick="wizardSortDesigns(\'desc\')">Price: High to Low</button></div>' +
+ '</div>' +
+ (cards ? '<div class="wizard-design-grid">' + cards + '</div>' : '<div style="text-align:center;padding:48px 16px;color:var(--text-light);font-size:14px">No designs match this budget — try increasing it.</div>');
  }
 
  function wizardFilterDesigns(filter) {
@@ -3839,6 +3854,8 @@
 /* Ensure ProjX-added sections (#sold, #about, stats band) reveal even if the scroll observer misses them */
 (function(){
   function reveal(){
+    var a=document.getElementById('about'), sb=document.querySelector('.stats-band');
+    if(a && sb && sb.parentNode && a!==sb.previousElementSibling){ sb.parentNode.insertBefore(a, sb); }
     document.querySelectorAll('#sold .fade-in, #about .fade-in, .stats-band.fade-in').forEach(function(e){ e.classList.add('visible'); });
   }
   if (document.readyState !== 'loading') reveal();
