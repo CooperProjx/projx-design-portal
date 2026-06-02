@@ -1586,6 +1586,11 @@ body.splash-lock{overflow:hidden}
 .px-chat-quick{display:flex;flex-wrap:wrap;gap:7px;padding:12px 16px;border-top:1px solid var(--border);background:#fff}
 .px-quick{font-size:12px;font-weight:600;color:var(--accent);background:var(--bg-alt);border:1px solid var(--border);border-radius:16px;padding:7px 12px;cursor:pointer;transition:all 0.15s}
 .px-quick:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.px-chat-input{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--border);background:#fff}
+.px-chat-input input{flex:1;border:1px solid var(--border);border-radius:20px;padding:9px 14px;font-family:inherit;font-size:13px;outline:none;color:var(--primary)}
+.px-chat-input input:focus{border-color:var(--accent)}
+.px-chat-input button{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background 0.15s}
+.px-chat-input button:hover{background:var(--primary)}
 </style>
 </head>
 <body>
@@ -3913,6 +3918,10 @@ body.splash-lock{overflow:hidden}
  <div class="px-chat-head"><div><div class="t">ProjX Assistant</div><div class="s">Here to help you find your package</div></div><button class="px-chat-close" onclick="pxChatToggle()" aria-label="Close chat">✕</button></div>
  <div class="px-chat-body" id="pxChatBody"></div>
  <div class="px-chat-quick" id="pxChatQuick"></div>
+ <form class="px-chat-input" onsubmit="pxChatSend();return false;">
+ <input type="text" id="pxChatText" placeholder="Type your question…" autocomplete="off"/>
+ <button type="submit" aria-label="Send">➤</button>
+ </form>
 </div>
 <script>
 /* Rule-based ProjX assistant — no backend. Routes to agent contact. */
@@ -3935,6 +3944,22 @@ function pxChatBot(text){ var b=document.getElementById('pxChatBody'); if(!b) re
 function pxChatUser(text){ var b=document.getElementById('pxChatBody'); if(!b) return; var d=document.createElement('div'); d.className='px-msg user'; d.textContent=text; b.appendChild(d); b.scrollTop=b.scrollHeight; }
 function pxChatRenderQuick(){ var q=document.getElementById('pxChatQuick'); if(!q) return; q.innerHTML=PX_CHAT_QUICK.map(function(o){ return '<span class="px-quick" onclick="pxChatAsk(\'' + o.k + '\',\'' + o.t.replace(/'/g,'') + '\')">' + o.t + '</span>'; }).join(''); }
 function pxChatAsk(key, label){ pxChatUser(label); setTimeout(function(){ pxChatBot(PX_CHAT_REPLIES[key] || "Let me connect you with an agent — email info@projxaustralia.com.au."); }, 350); }
+function pxChatReply(text){
+ var t=(text||'').toLowerCase();
+ if(/price|cost|how much|afford|deposit|\$/.test(t)) return PX_CHAT_REPLIES.pricing;
+ if(/coming soon|upcoming|release|not yet|future/.test(t)) return PX_CHAT_REPLIES.comingsoon;
+ if(/builder|design|home|house|floor ?plan|facade|bedroom/.test(t)) return PX_CHAT_REPLIES.builders;
+ if(/agent|contact|call|email|phone|speak|talk|human|person|someone/.test(t)) return PX_CHAT_REPLIES.agent;
+ if(/estate|lot|land|avail|where|location|suburb|region|browse|budget/.test(t)) return PX_CHAT_REPLIES.estates;
+ if(/^(hi|hey|hello|yo|thanks|thank you|cheers)\b/.test(t)) return "Happy to help! Ask me about estates, pricing, coming-soon releases or builders — or tap an option below.";
+ return "Great question — the best next step is your estate specialist. Call 1300 000 000 (placeholder) or email info@projxaustralia.com.au, or tap 'Talk to an agent' below.";
+}
+function pxChatSend(){
+ var inp=document.getElementById('pxChatText'); if(!inp) return;
+ var msg=inp.value.trim(); if(!msg) return;
+ pxChatUser(msg); inp.value='';
+ setTimeout(function(){ pxChatBot(pxChatReply(msg)); }, 400);
+}
 </script>
 </body>
 </html>
