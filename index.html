@@ -3350,18 +3350,14 @@ body.splash-lock{overflow:hidden}
  '<div style="font-size:13px;font-weight:700;color:' + (f.delta===0?'var(--success)':'var(--accent)') + '">' + f.price + '</div></div>';
  }).join('');
 
+ var vpOn = !!wizardState.valuePack;
+ var vpCard = '<div class="wizard-upgrade-card' + (vpOn?' selected':'') + '" onclick="toggleValuePack()" style="background:var(--bg);border:2px solid var(--accent);border-radius:var(--radius);padding:20px;cursor:pointer;transition:all 0.2s ease;position:relative;box-shadow:0 4px 16px rgba(59,125,221,0.12)">' + (vpOn?'<div style="position:absolute;top:10px;right:10px;background:var(--accent);color:#fff;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800">✓</div>':'') + '<div style="display:inline-block;background:var(--accent);color:#fff;font-size:10px;font-weight:800;letter-spacing:0.5px;padding:3px 9px;border-radius:5px;margin-bottom:10px">★ BEST VALUE</div>' + '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:4px">' + VALUE_PACK.name + '</div>' + '<div style="font-size:12px;color:var(--text-light);margin-bottom:8px;line-height:1.5">' + VALUE_PACK.items.join(' + ') + '</div>' + '<div style="font-size:13px;font-weight:700;color:var(--accent)">$11,000</div></div>';
+
  return  '<div class="wizard-step-heading"><h2>Customise Your Package</h2><p>Choose your facade and any upgrades you\'re interested in — these will be included in your consultation.</p></div>' +
- '<div onclick="toggleValuePack()" style="background:linear-gradient(135deg,var(--primary),#2C3A52);color:#fff;border:2px solid ' + (wizardState.valuePack?'var(--accent)':'transparent') + ';border-radius:var(--radius);padding:22px;margin-bottom:28px;cursor:pointer;position:relative">' +
- '<div style="position:absolute;top:14px;right:16px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:6px 12px;border-radius:20px">SAVE $11,000</div>' +
- '<div style="font-size:18px;font-weight:900;letter-spacing:-0.5px;margin-bottom:6px">★ ' + VALUE_PACK.name + '</div>' +
- '<div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;margin-bottom:12px;max-width:560px">' + VALUE_PACK.blurb + '</div>' +
- '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">' + VALUE_PACK.items.map(function(it){return '<span style="background:rgba(255,255,255,0.12);font-size:12px;font-weight:600;padding:5px 11px;border-radius:6px">✓ ' + it + '</span>';}).join('') + '</div>' +
- '<span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;background:' + (wizardState.valuePack?'var(--accent)':'#fff') + ';color:' + (wizardState.valuePack?'#fff':'var(--primary)') + ';padding:10px 18px;border-radius:8px">' + (wizardState.valuePack?'✓ Added to your package':'Add the Value Pack') + '</span>' +
- '</div>' +
  '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Choose Your Facade</div>' +
  '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px">' + facadeCards + '</div>' +
  '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Optional Upgrades</div>' +
- '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:32px">' + cards + '</div>' +
+ '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:32px">' + vpCard + cards + '</div>' +
  '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">' +
  '<span style="font-size:13px;color:var(--text-light);align-self:center">' + selected.length + ' upgrade' + (selected.length !== 1 ? 's' : '') + ' selected</span>' +
  '<button class="wizard-submit-btn" onclick="wizardNext()" style="max-width:320px">Continue to Contact Details →</button>' +
@@ -3659,12 +3655,12 @@ body.splash-lock{overflow:hidden}
       if (u) { var ps = u.price.match(/[\d,]+/g); if (ps) upgEstimate += parseInt(ps[0].replace(/,/g, '')); }
     });
     var _facE = FACADES.find(function(f){return f.id===(wizardState.facade||'standard');}); if (_facE) upgEstimate += _facE.delta;
-    if (wizardState.valuePack) upgEstimate -= 11000;
+    if (wizardState.valuePack) upgEstimate += 11000;
     const totalWithUpgrades = totalPkg > 0 ? totalPkg + upgEstimate : 0;
  const priceVal = totalWithUpgrades > 0 ? 'From $' + Math.round(totalWithUpgrades).toLocaleString() : (totalPkg > 0 ? 'From $' + Math.round(totalPkg).toLocaleString() : (d ? d.price : 'Contact for pricing'));
  const priceBreakdown = totalPkg > 0 ? 'Land from $' + Math.round(landFrom).toLocaleString() + ' + Build ' + d.price + (upgEstimate > 0 ? ' + Upgrades from $' + upgEstimate.toLocaleString() : '') : '';
  const buyerLabel = wizardState.buyerType === 'owner' ? ' Owner Occupier' : wizardState.buyerType === 'investor' ? ' Investor' : '—';
- var _facL = FACADES.find(function(x){return x.id===(wizardState.facade||'standard');}); const selectedUpgrades = (wizardState.valuePack ? ['Buyer Value Pack (save $11,000)'] : []).concat(_facL ? ['Facade: ' + _facL.name] : []).concat((wizardState.upgrades || []).map(function(uid) { var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid}); return u ? u.name : ''; }).filter(Boolean));
+ var _facL = FACADES.find(function(x){return x.id===(wizardState.facade||'standard');}); const selectedUpgrades = (wizardState.valuePack ? ['Buyer Value Pack ($11,000)'] : []).concat(_facL ? ['Facade: ' + _facL.name] : []).concat((wizardState.upgrades || []).map(function(uid) { var u = UPGRADE_OPTIONS.find(function(x){return x.id===uid}); return u ? u.name : ''; }).filter(Boolean));
 
  const financeLabel = wizardState.financeStatus === 'yes' ? ' Pre-approved' : wizardState.financeStatus === 'no' ? ' Not yet' : wizardState.financeStatus === 'help' ? ' Needs referral' : '—';
  // buyer type shown in form only
