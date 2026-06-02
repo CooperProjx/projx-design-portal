@@ -2701,7 +2701,7 @@ body.splash-lock{overflow:hidden}
 
  function renderWizardStep() {
     wizardState._inDetail = false;
- const totalSteps = wizardState.mode === 'builder' ? 4 : 3;
+ const totalSteps = wizardState.mode === 'builder' ? 5 : 4;
  const pct = (wizardState.step / totalSteps) * 100;
  document.getElementById('wizardProgressFill').style.width = Math.min(pct, 100) + '%';
  document.getElementById('wizardStepLabel').textContent = 'Step ' + wizardState.step + ' of ' + totalSteps;
@@ -2717,16 +2717,18 @@ body.splash-lock{overflow:hidden}
  switch (wizardState.step) {
  case 1: body.innerHTML = renderLandStep3(); break;
  case 2: body.innerHTML = renderLandStep4(); break;
- case 3: body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
- default: wizardState.step = 3; body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
+ case 3: body.innerHTML = renderUpgradesStep(); break;
+ case 4: body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
+ default: wizardState.step = 4; body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
  }
  } else {
  switch (wizardState.step) {
  case 1: body.innerHTML = renderBuilderProfile(); break;
  case 2: body.innerHTML = renderBuilderStep2(); break;
  case 3: body.innerHTML = renderBuilderStep3(); break;
- case 4: body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
- default: wizardState.step = 4; body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
+ case 4: body.innerHTML = renderUpgradesStep(); break;
+ case 5: body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
+ default: wizardState.step = 5; body.innerHTML = renderLeadCapture(); setTimeout(updateWizardCalc, 100); break;
  }
  }
  // Keep compare pill in sync
@@ -3475,16 +3477,10 @@ body.splash-lock{overflow:hidden}
  (totalPkg > 0 ? '<div style="text-align:right"><div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,0.5);margin-bottom:6px">Total Package From</div><div style="font-size:32px;font-weight:900;letter-spacing:-1px">$' + Math.round(totalPkg).toLocaleString() + '</div><div style="font-size:12px;color:rgba(255,255,255,0.6)">Land from $' + Math.round(landFrom).toLocaleString() + ' + Build</div></div>' : '') +
  '</div></div>' +
  
- // === UPGRADES SECTION (integrated, not separate step) ===
- '<div style="margin-bottom:48px">' +
- '<h2 style="font-size:22px;font-weight:900;color:var(--primary);letter-spacing:-0.5px;margin-bottom:6px">Customise Your Home</h2>' +
- '<p style="font-size:14px;color:var(--text-light);margin-bottom:24px">Choose your facade, add the value pack, and select any upgrades \u2014 all included in your consultation.</p>' +
- vpCardDetail +
- '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Choose Your Facade</div>' +
- '<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px">' + facadeCardsDetail + '</div>' +
- '<div style="font-size:14px;font-weight:800;color:var(--primary);margin-bottom:12px">Optional Upgrades</div>' +
- '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">' + upgradeCards + '</div>' +
- '<div style="margin-top:16px;font-size:13px;color:var(--text-light)">' + selected.length + ' upgrade' + (selected.length !== 1 ? 's' : '') + ' selected</div>' +
+ // === CUSTOMISE TEASER (full customise is a dedicated step) ===
+ '<div style="background:var(--bg-alt);border:1px dashed var(--border);border-radius:14px;padding:24px;margin-bottom:48px;text-align:center">' +
+ '<div style="font-size:15px;font-weight:800;color:var(--primary);margin-bottom:4px">Next: customise your home</div>' +
+ '<div style="font-size:13px;color:var(--text-light)">Select this design to choose your facade (Standard / Modern / Premium), add the $11k Value Pack and pick your upgrades.</div>' +
  '</div>' +
  
  // === CTA SECTION ===
